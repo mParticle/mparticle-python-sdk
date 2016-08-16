@@ -37,6 +37,7 @@ import path.to.mparticle
 ### Usage
 
 ```python
+import mparticle
 from mparticle import AppEvent, SessionStartEvent, SessionEndEvent, Batch
 
 batch = Batch()

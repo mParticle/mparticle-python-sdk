@@ -321,7 +321,8 @@ class Batch(object):
         """
         Sets the user_attributes of this Batch.
 
-
+        User attributes must be a dictionary with strings for keys and either strings or arrays of strings as values, 
+        for example: batch.user_attributes = {"eyes":"brown","favorite_foods":["indian","chinese","italian"]} 
         :param user_attributes: The user_attributes of this Batch.
         :type: object
         """
