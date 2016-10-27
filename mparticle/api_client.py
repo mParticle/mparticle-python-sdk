@@ -152,10 +152,17 @@ class ApiClient(object):
         url = self.host + resource_path
 
         # perform request and return response
-        response_data = self.request(method, url,
-                                     query_params=query_params,
-                                     headers=header_params,
-                                     post_params=post_params, body=body)
+        try:
+            response_data = self.request(method, url,
+                                         query_params=query_params,
+                                         headers=header_params,
+                                         post_params=post_params, body=body)
+        except Exception as api_exception:
+            if callback:
+                callback(api_exception)
+                return
+            else:
+                raise
 
         self.last_response = response_data
 

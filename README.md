@@ -54,13 +54,22 @@ api_instance = mparticle.EventsApi(configuration)
 # synchronous
 try: 
     api_instance.upload_events(batch)
-    #or api_instance.bulk_upload_events([batch_1, batch_2])
+    # or api_instance.bulk_upload_events([batch_1, batch_2])
+    # both upload and bulk_upload also have _with_http_info signatures,
+    # which will return the HTTP status info and headers, along with the body
 except mparticle.rest.ApiException as e:
     print "Exception while calling mParticle: %s\n" % e
 
 
 # asynchronous, specifying your callback function
-# api_instance.upload_events(batch, callback=callback_function)
+def my_callback(response):
+    if type(response) is mparticle.rest.ApiException:
+        print 'An error occured: ' + str(response)
+    else:
+        #successful uploads will yield an HTTP 202 response and no body
+        print response
+        
+thread = api_instance.upload_events(batch, callback=my_callback)
 ```
 
 ### License
