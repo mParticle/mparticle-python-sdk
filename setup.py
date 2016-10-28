@@ -4,7 +4,7 @@ import sys
 from setuptools import setup, find_packages
 
 NAME = "mparticle"
-VERSION = "0.9.1"
+VERSION = "0.9.2"
 
 
 
@@ -30,7 +30,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     license='Apache 2.0',
-    classifiers=(
+    classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
@@ -40,7 +40,5 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
-    ),
+    ],
 )
-
-
