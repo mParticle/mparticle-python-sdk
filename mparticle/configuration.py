@@ -89,6 +89,8 @@ class Configuration(object):
         self.cert_file = None
         # client key file
         self.key_file = None
+        # number of simultaneous connection to maintain
+        self.connection_pool_size = 1
 
     @property
     def logger_file(self):

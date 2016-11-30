@@ -49,6 +49,10 @@ batch.events = [SessionStartEvent(), app_event, SessionEndEvent()]
 configuration = mparticle.Configuration()
 configuration.api_key = 'REPLACE WITH API KEY'
 configuration.api_secret = 'REPLACE WITH API SECRET'
+
+# Raise the connection pool size if necessary (defaults to 1)
+# configuration.connection_pool_size = 50
+
 api_instance = mparticle.EventsApi(configuration)
 
 # synchronous
