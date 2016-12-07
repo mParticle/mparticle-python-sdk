@@ -120,11 +120,11 @@ class ApiClient(object):
         if self.cookie:
             header_params['Cookie'] = self.cookie
         if header_params:
-            header_params = self.sanitize_for_serialization(header_params)
+            header_params = ApiClient.sanitize_for_serialization(header_params)
 
         # path parameters
         if path_params:
-            path_params = self.sanitize_for_serialization(path_params)
+            path_params = ApiClient.sanitize_for_serialization(path_params)
             for k, v in iteritems(path_params):
                 replacement = quote(str(self.to_path_value(v)))
                 resource_path = resource_path.\
@@ -132,21 +132,21 @@ class ApiClient(object):
 
         # query parameters
         if query_params:
-            query_params = self.sanitize_for_serialization(query_params)
+            query_params = ApiClient.sanitize_for_serialization(query_params)
             query_params = {k: self.to_path_value(v)
                             for k, v in iteritems(query_params)}
 
         # post parameters
         if post_params or files:
             post_params = self.prepare_post_parameters(post_params, files)
-            post_params = self.sanitize_for_serialization(post_params)
+            post_params = ApiClient.sanitize_for_serialization(post_params)
 
         # auth setting
         self.update_params_for_auth(header_params, query_params, auth_settings)
 
         # body
         if body:
-            body = self.sanitize_for_serialization(body)
+            body = ApiClient.sanitize_for_serialization(body)
 
         # request url
         url = self.host + resource_path
@@ -194,7 +194,8 @@ class ApiClient(object):
         else:
             return str(obj)
 
-    def sanitize_for_serialization(self, obj):
+    @staticmethod
+    def sanitize_for_serialization(obj):
         """
         Builds a JSON POST object.
 
@@ -217,7 +218,7 @@ class ApiClient(object):
         elif isinstance(obj, types):
             return obj
         elif isinstance(obj, list):
-            return [self.sanitize_for_serialization(sub_obj)
+            return [ApiClient.sanitize_for_serialization(sub_obj)
                     for sub_obj in obj]
         elif isinstance(obj, (datetime, date)):
             return obj.isoformat()
@@ -234,7 +235,7 @@ class ApiClient(object):
                             for attr, _ in iteritems(obj.swagger_types)
                             if getattr(obj, attr) is not None}
 
-            return {key: self.sanitize_for_serialization(val)
+            return {key: ApiClient.sanitize_for_serialization(val)
                     for key, val in iteritems(obj_dict)}
 
     def deserialize(self, response, response_type):
