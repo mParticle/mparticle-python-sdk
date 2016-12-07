@@ -90,7 +90,7 @@ class ApiClient(object):
             self.host = host
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'mParticle Python client/0.9.3'
+        self.user_agent = 'mParticle Python client/0.9.4'
 
     @property
     def user_agent(self):
@@ -120,7 +120,7 @@ class ApiClient(object):
         if self.cookie:
             header_params['Cookie'] = self.cookie
         if header_params:
-            header_params = ApiClient.sanitize_for_serialization(header_params)
+            header_params = ApiClient.  (header_params)
 
         # path parameters
         if path_params:
