@@ -85,6 +85,14 @@ class AppEvent(object):
         self._event_name = event_name
         self._media_info = media_info
 
+    @classmethod
+    def create_attribution_event(cls, publisher=None, campaign=None):
+        return cls(
+            event_name='attribution',
+            custom_event_type='attribution',
+            custom_attributes = {'campaign': campaign, 'publisher':publisher}
+        )
+
     @property
     def timestamp_unixtime_ms(self):
         """
@@ -289,7 +297,7 @@ class AppEvent(object):
         :param custom_event_type: The custom_event_type of this AppEvent.
         :type: str
         """
-        allowed_values = ["unknown", "navigation", "location", "search", "transaction", "user_content", "user_preference", "social", "other"]
+        allowed_values = ["unknown", "navigation", "location", "search", "transaction", "user_content", "user_preference", "social", "other", "attribution"]
         if custom_event_type not in allowed_values:
             raise ValueError(
                 "Invalid value for `custom_event_type` ({0}), must be one of {1}"

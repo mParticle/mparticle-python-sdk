@@ -46,8 +46,21 @@ class TestAppEvent(unittest.TestCase):
         """
         Test AppEvent
         """
-        model = mparticle.models.app_event.AppEvent()
+        event = mparticle.models.app_event.AppEvent(
+            event_name='test event', 
+            custom_event_type='transaction', 
+            custom_attributes = {'example attribute key':'example attribute value'}
+            )
+        self.assertEqual('test event', event.event_name)
+        self.assertEqual('transaction', event.custom_event_type)
+        self.assertEqual('example attribute value', event.custom_attributes['example attribute key'])
 
+    def testAttributionEvent(self):
+        event = mparticle.models.app_event.AppEvent.create_attribution_event('this is a publisher', 'this is a campaign')
+        self.assertEqual('attribution', event.custom_event_type)
+        self.assertEqual('attribution', event.event_name)
+        self.assertEqual('this is a campaign', event.custom_attributes['campaign'])
+        self.assertEqual('this is a publisher', event.custom_attributes['publisher'])
 
 if __name__ == '__main__':
     unittest.main()
