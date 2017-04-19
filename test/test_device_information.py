@@ -42,11 +42,42 @@ class TestDeviceInformation(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testDeviceInformation(self):
-        """
-        Test DeviceInformation
-        """
+    def testValidateUUID(self):
         model = mparticle.models.device_information.DeviceInformation()
+        self.assertIsNotNone(model.validateUUID(""))
+        self.assertIsNotNone(model.validateUUID("this is not valid"))
+        self.assertIsNotNone(model.validateUUID("a8098c1z-f86e-11da-bd1a-00112444be1e"))
+
+        self.assertIsNone(None)
+        self.assertIsNone(model.validateUUID("a8098c1a-f86e-11da-bd1a-00112444be1e"))
+        self.assertIsNone(model.validateUUID("a8098c1a-f86e-11da-bd1a-00112444be1e".upper()))
+        self.assertIsNone(model.validateUUID("a8098c1af86e11dabd1a00112444be1e"))
+
+    def testInvalidIDFA(self):
+        with self.assertRaises(ValueError):
+            model = mparticle.models.device_information.DeviceInformation(ios_advertising_id="anything")
+
+        with self.assertRaises(ValueError):
+            model = mparticle.models.device_information.DeviceInformation()
+            model.ios_advertising_id = "anything"
+
+    def testInvalidIDFV(self):
+
+        with self.assertRaises(ValueError):
+            model = mparticle.models.device_information.DeviceInformation(ios_idfv="anything")
+
+        with self.assertRaises(ValueError):
+            model = mparticle.models.device_information.DeviceInformation()
+            model.ios_idfv = "anything"
+
+    def testInvalidAAID(self):
+
+        with self.assertRaises(ValueError):
+            model = mparticle.models.device_information.DeviceInformation(android_advertising_id="anything")
+
+        with self.assertRaises(ValueError):
+            model = mparticle.models.device_information.DeviceInformation()
+            model.android_advertising_id = "anything"
 
 
 if __name__ == '__main__':

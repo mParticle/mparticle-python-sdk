@@ -25,6 +25,7 @@
 from pprint import pformat
 from six import iteritems
 import re
+from uuid import UUID
 
 
 class DeviceInformation(object):
@@ -133,7 +134,7 @@ class DeviceInformation(object):
         self._timezone_offset = timezone_offset
         self._build_identifier = build_identifier
         self._http_header_user_agent = http_header_user_agent
-        self._ios_advertising_id = ios_advertising_id
+        self.ios_advertising_id = ios_advertising_id
         self._push_token = push_token
         self._cpu_architecture = cpu_architecture
         self._is_tablet = is_tablet
@@ -144,8 +145,16 @@ class DeviceInformation(object):
         self._has_nfc = has_nfc
         self._bluetooth_enabled = bluetooth_enabled
         self._bluetooth_version = bluetooth_version
-        self._ios_idfv = ios_idfv
-        self._android_advertising_id = android_advertising_id
+        self.ios_idfv = ios_idfv
+        self.android_advertising_id = android_advertising_id
+
+    def validateUUID(self, uuid_string):
+        if uuid_string is not None:
+            try:
+                UUID(uuid_string)
+            except ValueError as error:
+                return error
+        return None
 
     @property
     def brand(self):
@@ -657,6 +666,11 @@ class DeviceInformation(object):
         :type: str
         """
 
+        error = self.validateUUID(ios_advertising_id)
+        if (error is not None):
+            raise ValueError("Error: \"{0}\", while setting ios_advertising_id with value: {1}"
+                .format(error, ios_advertising_id))
+
         self._ios_advertising_id = ios_advertising_id
 
     @property
@@ -909,6 +923,10 @@ class DeviceInformation(object):
         :param ios_idfv: The ios_idfv of this DeviceInformation.
         :type: str
         """
+        error = self.validateUUID(ios_idfv)
+        if (error is not None):
+            raise ValueError("Error: \"{0}\", while setting ios_idfv with value: {1}"
+                .format(error, ios_idfv))
 
         self._ios_idfv = ios_idfv
 
@@ -932,6 +950,10 @@ class DeviceInformation(object):
         :param android_advertising_id: The android_advertising_id of this DeviceInformation.
         :type: str
         """
+        error = self.validateUUID(android_advertising_id)
+        if (error is not None):
+            raise ValueError("Error: \"{0}\", while setting android_advertising_id with value: {1}"
+                .format(error, android_advertising_id))
 
         self._android_advertising_id = android_advertising_id
 
