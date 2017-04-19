@@ -25,6 +25,7 @@
 from pprint import pformat
 from six import iteritems
 import re
+import mparticle
 
 
 class ScreenViewEvent(object):
@@ -69,7 +70,7 @@ class ScreenViewEvent(object):
         self._source_message_id = source_message_id
         self._session_id = session_id
         self._session_uuid = session_uuid
-        self._custom_attributes = custom_attributes
+        self.custom_attributes = custom_attributes
         self._location = location
         self._device_current_state = device_current_state
         self._screen_name = screen_name
@@ -210,6 +211,8 @@ class ScreenViewEvent(object):
         :param custom_attributes: The custom_attributes of this ScreenViewEvent.
         :type: dict(str, str)
         """
+        if not mparticle.ApiClient.validate_attribute_bag_values(custom_attributes):
+            raise ValueError("Invalid custom_attributes passed to ScreenViewEvent: " + str(custom_attributes))
 
         self._custom_attributes = custom_attributes
 

@@ -29,12 +29,11 @@ import sys
 import unittest
 
 import mparticle
-from mparticle.rest import ApiException
-from mparticle.models.screen_view_event import ScreenViewEvent
+from mparticle import ApiClient
 
 
-class TestScreenViewEvent(unittest.TestCase):
-    """ ScreenViewEvent unit test stubs """
+class TestApiClient(unittest.TestCase):
+    """ EventsApi unit test stubs """
 
     def setUp(self):
         pass
@@ -42,15 +41,11 @@ class TestScreenViewEvent(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testScreenViewEventAttributeValues(self):
-        with self.assertRaises(ValueError):
-            event = mparticle.models.screen_view_event.ScreenViewEvent(
-                custom_attributes = {'example attribute key': ['something']}
-                )
+    def test_validate_custom_attributes(self):
+        self.assertTrue(ApiClient.validate_attribute_bag_values({"foo":"bar", "foo-2":5, "foo-3":3.14, "foo-4":None}))
+        self.assertFalse(ApiClient.validate_attribute_bag_values({"foo":"bar", "foo-2":5, "foo-3":[3.14], "foo-4":None}))
+        pass
 
-        event = mparticle.models.screen_view_event.ScreenViewEvent()
-        with self.assertRaises(ValueError):
-            event.custom_attributes = {'example attribute key': ['something']}
 
 
 if __name__ == '__main__':

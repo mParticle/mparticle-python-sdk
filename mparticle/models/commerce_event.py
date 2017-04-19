@@ -25,6 +25,7 @@
 from pprint import pformat
 from six import iteritems
 import re
+import mparticle
 
 
 class CommerceEvent(object):
@@ -79,7 +80,7 @@ class CommerceEvent(object):
         self._source_message_id = source_message_id
         self._session_id = session_id
         self._session_uuid = session_uuid
-        self._custom_attributes = custom_attributes
+        self.custom_attributes = custom_attributes
         self._location = location
         self._device_current_state = device_current_state
         self._product_action = product_action
@@ -221,6 +222,7 @@ class CommerceEvent(object):
         :return: The custom_attributes of this CommerceEvent.
         :rtype: dict(str, str)
         """
+
         return self._custom_attributes
 
     @custom_attributes.setter
@@ -232,6 +234,9 @@ class CommerceEvent(object):
         :param custom_attributes: The custom_attributes of this CommerceEvent.
         :type: dict(str, str)
         """
+
+        if not mparticle.ApiClient.validate_attribute_bag_values(custom_attributes):
+            raise ValueError("Invalid custom_attributes passed to CommerceEvent: " + str(custom_attributes))
 
         self._custom_attributes = custom_attributes
 

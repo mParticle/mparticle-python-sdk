@@ -34,7 +34,6 @@ from mparticle.models.app_event import AppEvent
 
 
 class TestAppEvent(unittest.TestCase):
-    """ AppEvent unit test stubs """
 
     def setUp(self):
         pass
@@ -43,9 +42,6 @@ class TestAppEvent(unittest.TestCase):
         pass
 
     def testAppEvent(self):
-        """
-        Test AppEvent
-        """
         event = mparticle.models.app_event.AppEvent(
             event_name='test event', 
             custom_event_type='transaction', 
@@ -54,6 +50,23 @@ class TestAppEvent(unittest.TestCase):
         self.assertEqual('test event', event.event_name)
         self.assertEqual('transaction', event.custom_event_type)
         self.assertEqual('example attribute value', event.custom_attributes['example attribute key'])
+
+    def testAppEventAttributeValues(self):
+        with self.assertRaises(ValueError):
+            event = mparticle.models.app_event.AppEvent(
+                event_name='test event', 
+                custom_event_type='transaction', 
+                custom_attributes = {'example attribute key': ['something']}
+                )
+
+        event = mparticle.models.app_event.AppEvent(
+            event_name='test event', 
+            custom_event_type='transaction', 
+            custom_attributes=None
+            )
+        with self.assertRaises(ValueError):
+            event.custom_attributes = {'example attribute key': ['something']}
+        
 
     def testAttributionEvent(self):
         event = mparticle.models.app_event.AppEvent.create_attribution_event('this is a publisher', 'this is a campaign')

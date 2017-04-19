@@ -42,11 +42,22 @@ class TestCommerceEvent(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testCommerceEvent(self):
-        """
-        Test CommerceEvent
-        """
-        model = mparticle.models.commerce_event.CommerceEvent()
+    def testCommerceEventAttributeValues(self):
+        event = mparticle.models.commerce_event.CommerceEvent(product_action = {})
+        pass
+
+
+    def testCommerceEventAttributeValues(self):
+        with self.assertRaises(ValueError):
+            event = mparticle.models.commerce_event.CommerceEvent(product_action = {},
+                custom_attributes = {'example attribute key': ['something']}
+                )
+
+        event = mparticle.models.commerce_event.CommerceEvent(product_action = {})
+            
+        with self.assertRaises(ValueError):
+            event.custom_attributes = {'example attribute key': ['something']}
+        pass
 
 
 if __name__ == '__main__':

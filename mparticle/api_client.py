@@ -191,6 +191,10 @@ class ApiClient(object):
             return str(obj)
 
     @staticmethod
+    def validate_attribute_bag_values(custom_attributes):
+        return not (custom_attributes is not None and not all(value is None or type(value) in [int,str,float,bool,long] for value in custom_attributes.values()))
+
+    @staticmethod
     def sanitize_for_serialization(obj):
         """
         Builds a JSON POST object.
