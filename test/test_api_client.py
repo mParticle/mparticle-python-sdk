@@ -42,7 +42,7 @@ class TestApiClient(unittest.TestCase):
         pass
 
     def test_validate_custom_attributes(self):
-        self.assertTrue(ApiClient.validate_attribute_bag_values({"foo":"bar", "foo-2":5, "foo-3":3.14, "foo-4":None}))
+        self.assertTrue(ApiClient.validate_attribute_bag_values({"foo":"bar", "foo-2":5, "foo-3":3.14, "foo-4":None, "foo-5":u"bar"}))
         self.assertFalse(ApiClient.validate_attribute_bag_values({"foo":"bar", "foo-2":5, "foo-3":[3.14], "foo-4":None}))
         pass
 
