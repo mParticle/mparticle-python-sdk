@@ -91,6 +91,14 @@ class AppEvent(object):
             custom_attributes = {'campaign': campaign, 'publisher':publisher}
         )
 
+    @classmethod
+    def create_attribution_delete_event(cls):
+        return cls(
+            event_name='attribution',
+            custom_event_type='attribution',
+            custom_attributes = {'action': 'delete'}
+        )
+
     @property
     def timestamp_unixtime_ms(self):
         """

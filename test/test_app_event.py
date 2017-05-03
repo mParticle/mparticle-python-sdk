@@ -75,5 +75,13 @@ class TestAppEvent(unittest.TestCase):
         self.assertEqual('this is a campaign', event.custom_attributes['campaign'])
         self.assertEqual(u'this is a publisher', event.custom_attributes['publisher'])
 
+    def testAttributionDeleteEvent(self):
+        event = mparticle.models.app_event.AppEvent.create_attribution_delete_event()
+        self.assertEqual('attribution', event.custom_event_type)
+        self.assertEqual('attribution', event.event_name)
+        self.assertEqual('delete', event.custom_attributes['action'])
+        self.assertFalse('campaign' in event.custom_attributes)
+        self.assertFalse('publisher' in event.custom_attributes)
+
 if __name__ == '__main__':
     unittest.main()
