@@ -24,7 +24,6 @@
 
 from pprint import pformat
 from six import iteritems
-import re
 import mparticle
 
 
@@ -88,7 +87,7 @@ class AppEvent(object):
         return cls(
             event_name='attribution',
             custom_event_type='attribution',
-            custom_attributes = {'campaign': campaign, 'publisher':publisher}
+            custom_attributes={'campaign': campaign, 'publisher': publisher}
         )
 
     @classmethod
@@ -96,7 +95,7 @@ class AppEvent(object):
         return cls(
             event_name='attribution',
             custom_event_type='attribution',
-            custom_attributes = {'action': 'delete'}
+            custom_attributes={'action': 'delete'}
         )
 
     @property
