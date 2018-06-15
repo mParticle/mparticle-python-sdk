@@ -38,6 +38,8 @@ from datetime import date
 
 # python 2 and python 3 compatibility library
 from six import iteritems
+from six import text_type
+from six import integer_types
 
 try:
     # for python3
@@ -171,10 +173,9 @@ class ApiClient(object):
         if callback:
             callback(deserialized_data) if _return_http_data_only else callback((deserialized_data, response_data.status, response_data.getheaders()))
         elif _return_http_data_only:
-            return ( deserialized_data );
+            return (deserialized_data)
         else:
             return (deserialized_data, response_data.status, response_data.getheaders())
-
 
     def to_path_value(self, obj):
         """
@@ -192,7 +193,7 @@ class ApiClient(object):
 
     @staticmethod
     def validate_attribute_bag_values(custom_attributes):
-        return not (custom_attributes is not None and not all(value is None or type(value) in [unicode,int,str,float,bool,long] for value in custom_attributes.values()))
+        return not (custom_attributes is not None and not all(value is None or type(value) in [text_type, *integer_types, float, bool] for value in custom_attributes.values()))
 
     @staticmethod
     def sanitize_for_serialization(obj):
@@ -210,9 +211,7 @@ class ApiClient(object):
         :param obj: The data to serialize.
         :return: The serialized form of data.
         """
-        types = (str, int, long, float, bool, tuple)
-        if sys.version_info < (3, 0):
-            types = types + (unicode,)
+        types = (text_type, *integer_types, float, bool, tuple)
         if isinstance(obj, type(None)):
             return None
         elif isinstance(obj, types):
@@ -275,12 +274,12 @@ class ApiClient(object):
 
         if type(klass) == str:
             if klass.startswith('list['):
-                sub_kls = re.match('list\[(.*)\]', klass).group(1)
+                sub_kls = re.match(r'list\[(.*)\]', klass).group(1)
                 return [self.__deserialize(sub_data, sub_kls)
                         for sub_data in data]
 
             if klass.startswith('dict('):
-                sub_kls = re.match('dict\(([^,]*), (.*)\)', klass).group(2)
+                sub_kls = re.match(r'dict\(([^,]*), (.*)\)', klass).group(2)
                 return {k: self.__deserialize(v, sub_kls)
                         for k, v in iteritems(data)}
 
@@ -293,7 +292,7 @@ class ApiClient(object):
             else:
                 klass = eval('models.' + klass)
 
-        if klass in [int, long, float, str, bool]:
+        if klass in [*integer_types, float, text_type, bool]:
             return self.__deserialize_primitive(data, klass)
         elif klass == object:
             return self.__deserialize_object(data)
@@ -348,7 +347,7 @@ class ApiClient(object):
                                             header_params, body,
                                             post_params, files,
                                             response_type, auth_settings,
-                                            callback,_return_http_data_only))
+                                            callback, _return_http_data_only))
         thread.start()
         return thread
 
