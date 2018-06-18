@@ -4,7 +4,7 @@ import sys
 from setuptools import setup, find_packages
 
 NAME = "mparticle"
-VERSION = "0.10.2"
+VERSION = "0.10.3"
 
 
 
@@ -40,5 +40,6 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
     ],
 )

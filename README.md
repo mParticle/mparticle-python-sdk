@@ -2,7 +2,7 @@
 
 ## Python SDK
 
-This is the mParticle Python client SDK - use it to send your data to the [mParticle platform](https://www.mparticle.com/) and off to 80+ app services.
+This is the mParticle Python client SDK - use it to send your data to the [mParticle platform](https://www.mparticle.com/) and off to 200+ integrations.
 
 ### Requirements.
 
