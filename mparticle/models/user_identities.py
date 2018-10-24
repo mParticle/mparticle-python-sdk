@@ -320,7 +320,7 @@ class UserIdentities(object):
         Gets the other_2 of this UserIdentities.
 
 
-        :return: The other of this UserIdentities.
+        :return: The other_2 of this UserIdentities.
         :rtype: str
         """
         return self._other_2
@@ -331,7 +331,7 @@ class UserIdentities(object):
         Sets the other_2 of this UserIdentities.
 
 
-        :param other: The other of this UserIdentities.
+        :param other_2: The other_2 of this UserIdentities.
         :type: str
         """
 
@@ -343,7 +343,7 @@ class UserIdentities(object):
         Gets the other_3 of this UserIdentities.
 
 
-        :return: The other of this UserIdentities.
+        :return: The other_3 of this UserIdentities.
         :rtype: str
         """
         return self._other_3
@@ -354,7 +354,7 @@ class UserIdentities(object):
         Sets the other_3 of this UserIdentities.
 
 
-        :param other: The other of this UserIdentities.
+        :param other_3: The other_3 of this UserIdentities.
         :type: str
         """
 
@@ -367,7 +367,7 @@ class UserIdentities(object):
         Gets the other_4 of this UserIdentities.
 
 
-        :return: The other of this UserIdentities.
+        :return: The other_4 of this UserIdentities.
         :rtype: str
         """
         return self._other_4
@@ -378,7 +378,7 @@ class UserIdentities(object):
         Sets the other_4 of this UserIdentities.
 
 
-        :param other: The other of this UserIdentities.
+        :param other_4: The other_4 of this UserIdentities.
         :type: str
         """
 
