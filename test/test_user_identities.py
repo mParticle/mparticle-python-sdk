@@ -43,10 +43,37 @@ class TestUserIdentities(unittest.TestCase):
         pass
 
     def testUserIdentities(self):
-        """
-        Test UserIdentities
-        """
         model = mparticle.models.user_identities.UserIdentities()
+
+    def testOtherUserIdentitiesConstructor(self):
+        model = mparticle.models.user_identities.UserIdentities(other_2="foo-other2", other_3="foo-other3", other_4="foo-other4")
+        self.assertEqual("foo-other2", model.other_2)
+        self.assertEqual("foo-other3", model.other_3)
+        self.assertEqual("foo-other4", model.other_4)
+
+
+    def testOtherUserIdentitiesProperties(self):
+        model = mparticle.models.user_identities.UserIdentities()
+        model.other_2 = "foo-other2"
+        model.other_3 = "foo-other3"
+        model.other_4 = "foo-other4"
+        self.assertEqual("foo-other2", model.other_2)
+        self.assertEqual("foo-other3", model.other_3)
+        self.assertEqual("foo-other4", model.other_4)
+
+    def testOtherUserIdentitiesSerialization(self):
+        model = mparticle.models.user_identities.UserIdentities()
+        identity_dict = model.to_dict()
+        for key in identity_dict:
+            self.assertEqual(None, identity_dict[key])
+
+        model.other_2 = "foo-other2"
+        model.other_3 = "foo-other3"
+        model.other_4 = "foo-other4"
+        identity_dict = model.to_dict()
+        self.assertEqual("foo-other2", identity_dict["other_2"])
+        self.assertEqual("foo-other3", identity_dict["other_3"])
+        self.assertEqual("foo-other4", identity_dict["other_4"])
 
 
 if __name__ == '__main__':

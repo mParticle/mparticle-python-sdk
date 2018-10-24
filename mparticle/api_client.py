@@ -38,8 +38,9 @@ from datetime import date
 
 # python 2 and python 3 compatibility library
 from six import iteritems
-from six import text_type
+from six import string_types
 from six import integer_types
+from six import text_type
 
 try:
     # for python3
@@ -88,7 +89,7 @@ class ApiClient(object):
             self.host = host
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'mParticle Python client/0.10.3'
+        self.user_agent = 'mParticle Python client/0.10.4'
 
     @property
     def user_agent(self):
@@ -193,7 +194,7 @@ class ApiClient(object):
 
     @staticmethod
     def validate_attribute_bag_values(custom_attributes):
-        return not (custom_attributes is not None and not all(value is None or type(value) in [text_type, *integer_types, float, bool] for value in custom_attributes.values()))
+        return not (custom_attributes is not None and not all(value is None or isinstance(value, (float, bool) + integer_types + string_types) for value in custom_attributes.values()))
 
     @staticmethod
     def sanitize_for_serialization(obj):
@@ -211,7 +212,7 @@ class ApiClient(object):
         :param obj: The data to serialize.
         :return: The serialized form of data.
         """
-        types = (text_type, *integer_types, float, bool, tuple)
+        types = string_types + integer_types + (float, bool, tuple)
         if isinstance(obj, type(None)):
             return None
         elif isinstance(obj, types):
@@ -292,7 +293,7 @@ class ApiClient(object):
             else:
                 klass = eval('models.' + klass)
 
-        if klass in [*integer_types, float, text_type, bool]:
+        if klass in list(integer_types) + list(string_types) + [float, text_type, bool]:
             return self.__deserialize_primitive(data, klass)
         elif klass == object:
             return self.__deserialize_object(data)
