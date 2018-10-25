@@ -46,20 +46,20 @@ class TestUserIdentities(unittest.TestCase):
         model = mparticle.models.user_identities.UserIdentities()
 
     def testOtherUserIdentitiesConstructor(self):
-        model = mparticle.models.user_identities.UserIdentities(other_2="foo-other2", other_3="foo-other3", other_4="foo-other4")
-        self.assertEqual("foo-other2", model.other_2)
-        self.assertEqual("foo-other3", model.other_3)
-        self.assertEqual("foo-other4", model.other_4)
+        model = mparticle.models.user_identities.UserIdentities(other2="foo-other2", other3="foo-other3", other4="foo-other4")
+        self.assertEqual("foo-other2", model.other2)
+        self.assertEqual("foo-other3", model.other3)
+        self.assertEqual("foo-other4", model.other4)
 
 
     def testOtherUserIdentitiesProperties(self):
         model = mparticle.models.user_identities.UserIdentities()
-        model.other_2 = "foo-other2"
-        model.other_3 = "foo-other3"
-        model.other_4 = "foo-other4"
-        self.assertEqual("foo-other2", model.other_2)
-        self.assertEqual("foo-other3", model.other_3)
-        self.assertEqual("foo-other4", model.other_4)
+        model.other2 = "foo-other2"
+        model.other3 = "foo-other3"
+        model.other4 = "foo-other4"
+        self.assertEqual("foo-other2", model.other2)
+        self.assertEqual("foo-other3", model.other3)
+        self.assertEqual("foo-other4", model.other4)
 
     def testOtherUserIdentitiesSerialization(self):
         model = mparticle.models.user_identities.UserIdentities()
@@ -67,13 +67,13 @@ class TestUserIdentities(unittest.TestCase):
         for key in identity_dict:
             self.assertEqual(None, identity_dict[key])
 
-        model.other_2 = "foo-other2"
-        model.other_3 = "foo-other3"
-        model.other_4 = "foo-other4"
+        model.other2 = "foo-other2"
+        model.other3 = "foo-other3"
+        model.other4 = "foo-other4"
         identity_dict = model.to_dict()
-        self.assertEqual("foo-other2", identity_dict["other_2"])
-        self.assertEqual("foo-other3", identity_dict["other_3"])
-        self.assertEqual("foo-other4", identity_dict["other_4"])
+        self.assertEqual("foo-other2", identity_dict["other2"])
+        self.assertEqual("foo-other3", identity_dict["other3"])
+        self.assertEqual("foo-other4", identity_dict["other4"])
 
 
 if __name__ == '__main__':

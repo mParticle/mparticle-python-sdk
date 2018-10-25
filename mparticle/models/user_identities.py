@@ -29,7 +29,7 @@ import re
 
 class UserIdentities(object):
 
-    def __init__(self, other=None, customerid=None, facebook=None, twitter=None, google=None, microsoft=None, yahoo=None, email=None, alias=None, facebook_custom_audience_id=None, other_2=None, other_3=None, other_4=None):
+    def __init__(self, other=None, customerid=None, facebook=None, twitter=None, google=None, microsoft=None, yahoo=None, email=None, alias=None, facebook_custom_audience_id=None, other2=None, other3=None, other4=None):
         """
         UserIdentities - a model defined in Swagger
 
@@ -49,9 +49,9 @@ class UserIdentities(object):
             'email': 'str',
             'alias': 'str',
             'facebook_custom_audience_id': 'str',
-            'other_2': 'str',
-            'other_3': 'str',
-            'other_4': 'str'
+            'other2': 'str',
+            'other3': 'str',
+            'other4': 'str'
         }
 
         self.attribute_map = {
@@ -65,9 +65,9 @@ class UserIdentities(object):
             'email': 'email',
             'alias': 'alias',
             'facebook_custom_audience_id': 'facebook_custom_audience_id',
-            'other_2': 'other_2',
-            'other_3': 'other_3',
-            'other_4': 'other_4'
+            'other2': 'other2',
+            'other3': 'other3',
+            'other4': 'other4'
         }
 
         self._other = other
@@ -80,9 +80,9 @@ class UserIdentities(object):
         self._email = email
         self._alias = alias
         self._facebook_custom_audience_id = facebook_custom_audience_id
-        self._other_2 = other_2
-        self._other_3 = other_3
-        self._other_4 = other_4
+        self._other2 = other2
+        self._other3 = other3
+        self._other4 = other4
 
     @property
     def other(self):
@@ -315,74 +315,74 @@ class UserIdentities(object):
         self._facebook_custom_audience_id = facebook_custom_audience_id
 
     @property
-    def other_2(self):
+    def other2(self):
         """
-        Gets the other_2 of this UserIdentities.
+        Gets the other2 of this UserIdentities.
 
 
-        :return: The other_2 of this UserIdentities.
+        :return: The other2 of this UserIdentities.
         :rtype: str
         """
-        return self._other_2
+        return self._other2
 
-    @other_2.setter
-    def other_2(self, other_2):
+    @other2.setter
+    def other2(self, other2):
         """
-        Sets the other_2 of this UserIdentities.
+        Sets the other2 of this UserIdentities.
 
 
-        :param other_2: The other_2 of this UserIdentities.
+        :param other2: The other2 of this UserIdentities.
         :type: str
         """
 
-        self._other_2 = other_2
+        self._other2 = other2
 
     @property
-    def other_3(self):
+    def other3(self):
         """
-        Gets the other_3 of this UserIdentities.
+        Gets the other3 of this UserIdentities.
 
 
-        :return: The other_3 of this UserIdentities.
+        :return: The other3 of this UserIdentities.
         :rtype: str
         """
-        return self._other_3
+        return self._other3
 
-    @other_3.setter
-    def other_3(self, other_3):
+    @other3.setter
+    def other3(self, other3):
         """
-        Sets the other_3 of this UserIdentities.
+        Sets the other3 of this UserIdentities.
 
 
-        :param other_3: The other_3 of this UserIdentities.
+        :param other3: The other3 of this UserIdentities.
         :type: str
         """
 
-        self._other_3 = other_3
+        self._other3 = other3
 
 
     @property
-    def other_4(self):
+    def other4(self):
         """
-        Gets the other_4 of this UserIdentities.
+        Gets the other4 of this UserIdentities.
 
 
-        :return: The other_4 of this UserIdentities.
+        :return: The other4 of this UserIdentities.
         :rtype: str
         """
-        return self._other_4
+        return self._other4
 
-    @other_4.setter
-    def other_4(self, other_4):
+    @other4.setter
+    def other4(self, other4):
         """
-        Sets the other_4 of this UserIdentities.
+        Sets the other4 of this UserIdentities.
 
 
-        :param other_4: The other_4 of this UserIdentities.
+        :param other4: The other4 of this UserIdentities.
         :type: str
         """
 
-        self._other_4 = other_4
+        self._other4 = other4
 
     def to_dict(self):
         """
