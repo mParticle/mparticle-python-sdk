@@ -89,7 +89,7 @@ class ApiClient(object):
             self.host = host
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'mParticle Python client/0.10.5'
+        self.user_agent = 'mParticle Python client/0.10.6'
 
     @property
     def user_agent(self):

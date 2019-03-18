@@ -48,6 +48,34 @@ class TestBatch(unittest.TestCase):
         """
         model = mparticle.models.batch.Batch()
 
+    def testBatchMPID(self):
+        """
+        Test Batch MPID
+        """
+        model = mparticle.models.batch.Batch()
+
+        identity_dict = model.to_dict()
+        for key in identity_dict:
+            self.assertEqual(None, identity_dict[key])
+
+        model.mpid = 600868121729048600
+        identity_dict = model.to_dict()
+        self.assertEqual(600868121729048600, identity_dict["mpid"])
+
+    def testBatchDAS(self):
+        """
+        Test Batch DAS
+        """
+        model = mparticle.models.batch.Batch()
+
+        identity_dict = model.to_dict()
+        for key in identity_dict:
+            self.assertEqual(None, identity_dict[key])
+
+        model.mp_deviceid = "59780f39-d7a0-4ebe-9950-280f937c29e2"
+        identity_dict = model.to_dict()
+        self.assertEqual("59780f39-d7a0-4ebe-9950-280f937c29e2", identity_dict["mp_deviceid"])
+
 
 if __name__ == '__main__':
     unittest.main()

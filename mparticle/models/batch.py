@@ -60,7 +60,7 @@ from .user_identities import UserIdentities
 
 class Batch(object):
 
-    def __init__(self, events=None, source_request_id=None, environment=None, ip=None, schema_version=None, device_info=None, application_info=None, user_attributes=None, deleted_user_attributes=None, user_identities=None, api_key=None):
+    def __init__(self, events=None, source_request_id=None, environment=None, ip=None, schema_version=None, device_info=None, application_info=None, user_attributes=None, deleted_user_attributes=None, user_identities=None, api_key=None, mpid=None, mp_deviceid=None):
         """
         Batch - a model defined in Swagger
 
@@ -80,7 +80,9 @@ class Batch(object):
             'user_attributes': 'object',
             'deleted_user_attributes': 'list[str]',
             'user_identities': 'UserIdentities',
-            'api_key':'str'
+            'api_key':'str',
+            'mpid':'int',
+            'mp_deviceid':'str'
         }
 
         self.attribute_map = {
@@ -94,7 +96,9 @@ class Batch(object):
             'user_attributes': 'user_attributes',
             'deleted_user_attributes': 'deleted_user_attributes',
             'user_identities': 'user_identities',
-            'api_key':'api_key'
+            'api_key':'api_key',
+            'mpid':'mpid',
+            'mp_deviceid':'mp_deviceid'
         }
 
         self._api_key = api_key
@@ -108,6 +112,8 @@ class Batch(object):
         self._user_attributes = user_attributes
         self._deleted_user_attributes = deleted_user_attributes
         self._user_identities = user_identities
+        self._mpid = mpid
+        self._mp_deviceid = mp_deviceid
         self._allowed_types = {type(AppEvent('empty')):'custom_event',
                      type(FirstRunEvent()):'first_run',
                      type(SessionStartEvent()):'session_start',
@@ -399,6 +405,52 @@ class Batch(object):
         """
 
         self._user_identities = user_identities
+
+    @property
+    def mpid(self):
+        """
+            Gets the mpid of this Batch.
+            
+            
+            :return: The mpid of this Batch.
+            :rtype: str
+            """
+        return self._mpid
+    
+    @mpid.setter
+    def mpid(self, mpid):
+        """
+            Sets the mpid of this Batch.
+            
+            
+            :param mpid: The mpid of this Batch.
+            :type: str
+            """
+        
+        self._mpid = mpid
+
+    @property
+    def mp_deviceid(self):
+        """
+            Gets the mp_deviceid of this Batch.
+            
+            
+            :return: The mp_deviceid of this Batch.
+            :rtype: str
+            """
+        return self._mp_deviceid
+    
+    @mp_deviceid.setter
+    def mp_deviceid(self, mp_deviceid):
+        """
+            Sets the mp_deviceid of this Batch.
+            
+            
+            :param mp_deviceid: The mp_deviceid of this Batch.
+            :type: str
+            """
+        
+        self._mp_deviceid = mp_deviceid
 
     def to_dict(self):
         """

@@ -13,6 +13,9 @@ Name | Type | Description | Notes
 **email** | **str** |  | [optional] 
 **alias** | **str** |  | [optional] 
 **facebook_custom_audience_id** | **str** |  | [optional] 
+**other2** | **str** |  | [optional] 
+**other3** | **str** |  | [optional] 
+**other4** | **str** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
