@@ -34,12 +34,14 @@ from .models.attribution_info import AttributionInfo
 from .models.batch import Batch
 from .models.breadcrumb_event import BreadcrumbEvent
 from .models.commerce_event import CommerceEvent
+from .models.consent_state import ConsentState
 from .models.crash_report_event import CrashReportEvent
 from .models.device_current_state import DeviceCurrentState
 from .models.device_information import DeviceInformation
 from .models.event_base import EventBase
 from .models.event_data import EventData
 from .models.first_run_event import FirstRunEvent
+from .models.gdpr_consent_state import GDPRConsentState
 from .models.geo_location import GeoLocation
 from .models.media_info import MediaInfo
 from .models.network_performance_event import NetworkPerformanceEvent

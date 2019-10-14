@@ -1,4 +1,7 @@
 import mparticle
+import calendar
+import time
+
 batch = mparticle.Batch()
 batch.environment = 'development'
 
@@ -14,7 +17,22 @@ device_info.android_advertising_id = 'a26f9736-c262-47ea-988b-0b0504cee874'
 batch.device_info = device_info
 
 # arbitrary example allowing you to create a segment of users trial users
-batch.user_attributes = {'Account type': 'trial', 'TrialEndDate':'2016-12-01'}
+batch.user_attributes = {'Account type': 'trial', 'TrialEndDate': '2016-12-01'}
+
+gdpr_consent_state = mparticle.GDPRConsentState()
+gdpr_consent_state.document = 'document_agreement.v2'
+gdpr_consent_state.consented = True
+gdpr_consent_state.timestamp_unixtime_ms = calendar.timegm(time.gmtime())
+gdpr_consent_state.location = 'dtmgbank.com/signup'
+gdpr_consent_state.hardware_id = 'IDFA:a5d934n0-232f-4afc-2e9a-3832d95zc702'
+
+consent_state = mparticle.ConsentState()
+# Make sure this purpose matches your consent purpose in
+# Setup > GDPR Settings
+# https://docs.mparticle.com/guides/consent-management/#enabling-gdpr-consent-management
+consent_state.gdpr = {'document_agreement': gdpr_consent_state}
+
+batch.consent_state = consent_state
 
 app_event = mparticle.AppEvent('Example', 'navigation')
 app_event.timestamp_unixtime_ms = 1552596256103
@@ -37,7 +55,7 @@ session_start.session_id = 12345678
 session_start.timestamp_unixtime_ms = 1552596256103
 
 session_end = mparticle.SessionEndEvent()
-session_end.session_id = session_start.session_id # its mandatory that these match
+session_end.session_id = session_start.session_id  # its mandatory that these match
 session_end.session_duration_ms = 10000
 session_end.timestamp_unixtime_ms = 1552596266103 + 10000
 
@@ -61,10 +79,10 @@ background.timestamp_unixtime_ms = 1552596256103
 configuration = mparticle.Configuration()
 configuration.api_key = 'foo-key'
 configuration.api_secret = 'foo-secret'
-configuration.debug = True #enable logging of HTTP traffic
+configuration.debug = True  # enable logging of HTTP traffic
 api_instance = mparticle.EventsApi(configuration)
 
-try: 
+try:
     api_instance.upload_events(batch)
     # you can also send multiple batches at a time to decrease the amount of network calls
     #api_instance.bulk_upload_events([batch, batch])
