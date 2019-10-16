@@ -32,6 +32,7 @@ from .application_information import ApplicationInformation
 from .application_state_transition_event import ApplicationStateTransitionEvent
 from .attribution_info import AttributionInfo
 from .breadcrumb_event import BreadcrumbEvent
+from .consent_state import ConsentState
 from .commerce_event import CommerceEvent
 from .crash_report_event import CrashReportEvent
 from .device_current_state import DeviceCurrentState
@@ -58,9 +59,10 @@ from .shopping_cart import ShoppingCart
 from .source_information import SourceInformation
 from .user_identities import UserIdentities
 
+
 class Batch(object):
 
-    def __init__(self, events=None, source_request_id=None, environment=None, ip=None, schema_version=None, device_info=None, application_info=None, user_attributes=None, deleted_user_attributes=None, user_identities=None, api_key=None, mpid=None, mp_deviceid=None):
+    def __init__(self, events=None, source_request_id=None, environment=None, ip=None, schema_version=None, device_info=None, application_info=None, user_attributes=None, deleted_user_attributes=None, user_identities=None, api_key=None, mpid=None, mp_deviceid=None, consent_state=None):
         """
         Batch - a model defined in Swagger
 
@@ -80,9 +82,10 @@ class Batch(object):
             'user_attributes': 'object',
             'deleted_user_attributes': 'list[str]',
             'user_identities': 'UserIdentities',
-            'api_key':'str',
-            'mpid':'int',
-            'mp_deviceid':'str'
+            'consent_state': 'ConsentState',
+            'api_key': 'str',
+            'mpid': 'int',
+            'mp_deviceid': 'str'
         }
 
         self.attribute_map = {
@@ -96,9 +99,10 @@ class Batch(object):
             'user_attributes': 'user_attributes',
             'deleted_user_attributes': 'deleted_user_attributes',
             'user_identities': 'user_identities',
-            'api_key':'api_key',
-            'mpid':'mpid',
-            'mp_deviceid':'mp_deviceid'
+            'consent_state': 'consent_state',
+            'api_key': 'api_key',
+            'mpid': 'mpid',
+            'mp_deviceid': 'mp_deviceid'
         }
 
         self._api_key = api_key
@@ -110,24 +114,25 @@ class Batch(object):
         self._device_info = device_info
         self._application_info = application_info
         self._user_attributes = user_attributes
+        self._consent_state = consent_state
         self._deleted_user_attributes = deleted_user_attributes
         self._user_identities = user_identities
         self._mpid = mpid
         self._mp_deviceid = mp_deviceid
-        self._allowed_types = {type(AppEvent('empty')):'custom_event',
-                     type(FirstRunEvent()):'first_run',
-                     type(SessionStartEvent()):'session_start',
-                     type(SessionEndEvent()):'session_end',
-                     type(ApplicationStateTransitionEvent()):'application_state_transition',
-                     type(ScreenViewEvent()):'screen_view',
-                     type(PushRegistrationEvent()):'push_registration',
-                     type(ProfileEvent()):'profile',
-                     type(OptOutEvent()):'opt_out',
-                     type(BreadcrumbEvent()):'breadcrumb',
-                     type(CommerceEvent(ProductAction('purchase'))):'commerce_event',
-                     type(PushMessageEvent()):'push_message',
-                     type(NetworkPerformanceEvent()):'network_performance',
-                     type(CrashReportEvent()):'commerce_event'}
+        self._allowed_types = {type(AppEvent('empty')): 'custom_event',
+                               type(FirstRunEvent()): 'first_run',
+                               type(SessionStartEvent()): 'session_start',
+                               type(SessionEndEvent()): 'session_end',
+                               type(ApplicationStateTransitionEvent()): 'application_state_transition',
+                               type(ScreenViewEvent()): 'screen_view',
+                               type(PushRegistrationEvent()): 'push_registration',
+                               type(ProfileEvent()): 'profile',
+                               type(OptOutEvent()): 'opt_out',
+                               type(BreadcrumbEvent()): 'breadcrumb',
+                               type(CommerceEvent(ProductAction('purchase'))): 'commerce_event',
+                               type(PushMessageEvent()): 'push_message',
+                               type(NetworkPerformanceEvent()): 'network_performance',
+                               type(CrashReportEvent()): 'commerce_event'}
 
     @property
     def events(self):
@@ -158,7 +163,8 @@ class Batch(object):
 
         if event_type not in self._allowed_types:
             raise ValueError(
-                "Invalid event type: "+ str(event_type) +" added to batch, must be one of {0}"
+                "Invalid event type: " +
+                str(event_type) + " added to batch, must be one of {0}"
                 .format(self._allowed_types.keys())
             )
 
@@ -410,47 +416,70 @@ class Batch(object):
     def mpid(self):
         """
             Gets the mpid of this Batch.
-            
-            
+
+
             :return: The mpid of this Batch.
             :rtype: str
             """
         return self._mpid
-    
+
     @mpid.setter
     def mpid(self, mpid):
         """
             Sets the mpid of this Batch.
-            
-            
+
+
             :param mpid: The mpid of this Batch.
             :type: str
             """
-        
+
         self._mpid = mpid
 
     @property
     def mp_deviceid(self):
         """
             Gets the mp_deviceid of this Batch.
-            
-            
+
+
             :return: The mp_deviceid of this Batch.
             :rtype: str
             """
         return self._mp_deviceid
-    
+
     @mp_deviceid.setter
     def mp_deviceid(self, mp_deviceid):
         """
             Sets the mp_deviceid of this Batch.
-            
-            
+
+
             :param mp_deviceid: The mp_deviceid of this Batch.
             :type: str
             """
-        
+
         self._mp_deviceid = mp_deviceid
+
+    @property
+    def consent_state(self):
+        """
+        Gets the ConsentState of this Batch
+
+        :return: The consent_state of this Batch
+        :rtype: dict
+        """
+
+        return self._consent_state
+
+    @consent_state.setter
+    def consent_state(self, consent_state):
+        """
+        Sets the consent_state of this Batch.
+
+
+        :param consent_state: The consent_state of this Batch.
+        :type: str
+        """
+
+        self._consent_state = consent_state
 
     def to_dict(self):
         """

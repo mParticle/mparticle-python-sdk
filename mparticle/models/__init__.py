@@ -34,12 +34,14 @@ from .attribution_info import AttributionInfo
 from .batch import Batch
 from .breadcrumb_event import BreadcrumbEvent
 from .commerce_event import CommerceEvent
+from .consent_state import ConsentState
 from .crash_report_event import CrashReportEvent
 from .device_current_state import DeviceCurrentState
 from .device_information import DeviceInformation
 from .event_base import EventBase
 from .event_data import EventData
 from .first_run_event import FirstRunEvent
+from .gdpr_consent_state import GDPRConsentState
 from .geo_location import GeoLocation
 from .media_info import MediaInfo
 from .network_performance_event import NetworkPerformanceEvent
