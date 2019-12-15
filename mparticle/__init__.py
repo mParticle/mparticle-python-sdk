@@ -60,6 +60,8 @@ from .models.session_start_event import SessionStartEvent
 from .models.shopping_cart import ShoppingCart
 from .models.source_information import SourceInformation
 from .models.user_identities import UserIdentities
+from .models.batch_context import BatchContext
+from .models.data_plan_context import DataPlanContext
 
 # import apis into sdk package
 from .apis.events_api import EventsApi

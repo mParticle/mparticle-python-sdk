@@ -62,7 +62,7 @@ from .user_identities import UserIdentities
 
 class Batch(object):
 
-    def __init__(self, events=None, source_request_id=None, environment=None, ip=None, schema_version=None, device_info=None, application_info=None, user_attributes=None, deleted_user_attributes=None, user_identities=None, api_key=None, mpid=None, mp_deviceid=None, consent_state=None):
+    def __init__(self, events=None, source_request_id=None, environment=None, ip=None, schema_version=None, device_info=None, application_info=None, user_attributes=None, deleted_user_attributes=None, user_identities=None, api_key=None, mpid=None, mp_deviceid=None, consent_state=None, context=None):
         """
         Batch - a model defined in Swagger
 
@@ -85,7 +85,8 @@ class Batch(object):
             'consent_state': 'ConsentState',
             'api_key': 'str',
             'mpid': 'int',
-            'mp_deviceid': 'str'
+            'mp_deviceid': 'str',
+            'context': 'BatchContext'
         }
 
         self.attribute_map = {
@@ -102,7 +103,8 @@ class Batch(object):
             'consent_state': 'consent_state',
             'api_key': 'api_key',
             'mpid': 'mpid',
-            'mp_deviceid': 'mp_deviceid'
+            'mp_deviceid': 'mp_deviceid',
+            'context': 'context'
         }
 
         self._api_key = api_key
@@ -133,6 +135,7 @@ class Batch(object):
                                type(PushMessageEvent()): 'push_message',
                                type(NetworkPerformanceEvent()): 'network_performance',
                                type(CrashReportEvent()): 'commerce_event'}
+        self._context = context
 
     @property
     def events(self):
@@ -480,6 +483,29 @@ class Batch(object):
         """
 
         self._consent_state = consent_state
+
+    @property
+    def context(self):
+        """
+        Gets the BatchContext of this Batch
+
+        :return: The context of this Batch
+        :rtype: BatchContext
+        """
+
+        return self._context
+
+    @context.setter
+    def context(self, context):
+        """
+        Sets the BatchContext of this Batch.
+
+
+        :param context: The context of this Batch.
+        :type: BatchContext
+        """
+
+        self._context = context
 
     def to_dict(self):
         """

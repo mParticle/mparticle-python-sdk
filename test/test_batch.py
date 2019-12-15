@@ -75,7 +75,21 @@ class TestBatch(unittest.TestCase):
         model.mp_deviceid = "59780f39-d7a0-4ebe-9950-280f937c29e2"
         identity_dict = model.to_dict()
         self.assertEqual("59780f39-d7a0-4ebe-9950-280f937c29e2", identity_dict["mp_deviceid"])
+    
+    def testBatchWithoutContext(self):
+        model = mparticle.models.batch.Batch()
+        batch_dict = model.to_dict()
+        self.assertIsNone(batch_dict["context"])
 
+    def testBatchWithContext(self):
+        data_plan = mparticle.models.data_plan_context.DataPlanContext("foo", 5)
+        context = mparticle.models.batch_context.BatchContext(data_plan)
+        model = mparticle.models.batch.Batch(context=context)
+        batch_dict = model.to_dict()
+        self.assertIsNotNone(batch_dict["context"])
+        self.assertIsNotNone(batch_dict["context"]["data_plan"])
+        self.assertEqual("foo", batch_dict["context"]["data_plan"]["plan_id"])
+        self.assertEqual(5, batch_dict["context"]["data_plan"]["plan_version"])
 
 if __name__ == '__main__':
     unittest.main()
