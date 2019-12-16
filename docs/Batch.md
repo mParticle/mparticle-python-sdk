@@ -6,6 +6,7 @@
 | --------------------------- | ------------------------------------------------------- | ----------- | ---------- |
 | **events**                  | [**list[EventBase]**](EventBase.md)                     |             | [optional] |
 | **source_request_id**       | **str**                                                 |             | [optional] |
+| **context**                 | [**BatchContext**](BatchContext.md)                     |             | [optional] |
 | **environment**             | **str**                                                 |             |
 | **ip**                      | **str**                                                 |             | [optional] |
 | **schema_version**          | **int**                                                 |             | [optional] |

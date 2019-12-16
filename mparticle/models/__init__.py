@@ -60,3 +60,5 @@ from .session_start_event import SessionStartEvent
 from .shopping_cart import ShoppingCart
 from .source_information import SourceInformation
 from .user_identities import UserIdentities
+from .batch_context import BatchContext
+from .data_plan_context import DataPlanContext

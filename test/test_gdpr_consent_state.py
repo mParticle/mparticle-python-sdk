@@ -81,8 +81,6 @@ class TestGDPRConsentState(unittest.TestCase):
         model.location = 'dtmgbank.com/signup'
         model.hardware_id = 'IDFA: a5d934n0-232f-4afc-2e9a-3832d95zc702'
 
-        print model
-
         self.assertEqual(model.document, 'document_agreement.v2')
         self.assertEqual(model.consented, True)
         self.assertEqual(model.timestamp_unixtime_ms, now)
