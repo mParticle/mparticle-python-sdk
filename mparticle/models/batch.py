@@ -104,7 +104,7 @@ class Batch(object):
             'api_key': 'api_key',
             'mpid': 'mpid',
             'mp_deviceid': 'mp_deviceid',
-            'context': 'context'
+            'context': 'context',
         }
 
         self._api_key = api_key
