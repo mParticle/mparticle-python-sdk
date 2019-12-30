@@ -36,6 +36,14 @@ batch.consent_state = consent_state
 
 app_event = mparticle.AppEvent('Example', 'navigation')
 app_event.timestamp_unixtime_ms = 1552596256103
+app_event.custom_flags = {
+    'answer': 42,
+    'question': 'What is the answer to life, the universe, and everything?',
+    'dolphins': [
+        'So long',
+        'Thanks for all the fish'
+    ]
+}
 
 product = mparticle.Product()
 product.name = 'Example Product'
@@ -58,6 +66,15 @@ session_end = mparticle.SessionEndEvent()
 session_end.session_id = session_start.session_id  # its mandatory that these match
 session_end.session_duration_ms = 10000
 session_end.timestamp_unixtime_ms = 1552596266103 + 10000
+
+screen_view_event = mparticle.ScreenViewEvent()
+screen_view_event.custom_flags = {
+    "foo": 'bar',
+    'answer': 42,
+    'arrays': [
+        'foo', 'bar', 'baz'
+    ]
+}
 
 batch.events = [session_start, app_event, commerce_event, session_end]
 
@@ -85,6 +102,6 @@ api_instance = mparticle.EventsApi(configuration)
 try:
     api_instance.upload_events(batch)
     # you can also send multiple batches at a time to decrease the amount of network calls
-    #api_instance.bulk_upload_events([batch, batch])
+    # api_instance.bulk_upload_events([batch, batch])
 except mparticle.rest.ApiException as e:
     print "Exception while calling mParticle: %s\n" % e

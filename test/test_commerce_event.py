@@ -42,22 +42,45 @@ class TestCommerceEvent(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testCommerceEventAttributeValues(self):
-        event = mparticle.models.commerce_event.CommerceEvent(product_action = {})
+    def testCommerceEvent(self):
+        event = mparticle.models.commerce_event.CommerceEvent(
+            product_action={})
         pass
-
 
     def testCommerceEventAttributeValues(self):
         with self.assertRaises(ValueError):
-            event = mparticle.models.commerce_event.CommerceEvent(product_action = {},
-                custom_attributes = {'example attribute key': ['something']}
-                )
+            event = mparticle.models.commerce_event.CommerceEvent(product_action={},
+                                                                  custom_attributes={
+                                                                      'example attribute key': ['something']}
+                                                                  )
 
-        event = mparticle.models.commerce_event.CommerceEvent(product_action = {})
-            
+        event = mparticle.models.commerce_event.CommerceEvent(
+            product_action={})
+
         with self.assertRaises(ValueError):
             event.custom_attributes = {'example attribute key': ['something']}
         pass
+
+    def testCommerceEventCustomAttributes(self):
+        custom_flags = {
+            "foo": 'bar',
+            'answer': 42,
+            'arrays': [
+                'foo', 'bar', 'baz'
+            ]
+        }
+
+        event = mparticle.models.commerce_event.CommerceEvent(
+            product_action='test',
+            custom_flags=custom_flags)
+
+        event_dict = event.to_dict()
+
+        self.assertEqual("bar", event_dict["custom_flags"]["foo"])
+        self.assertEqual(42, event_dict["custom_flags"]["answer"])
+        self.assertEqual(
+            ['foo', 'bar', 'baz'],
+            event_dict["custom_flags"]["arrays"])
 
 
 if __name__ == '__main__':

@@ -43,37 +43,41 @@ class TestAppEvent(unittest.TestCase):
 
     def testAppEvent(self):
         event = mparticle.models.app_event.AppEvent(
-            event_name='test event', 
-            custom_event_type='transaction', 
-            custom_attributes = {'example attribute key':'example attribute value'}
-            )
+            event_name='test event',
+            custom_event_type='transaction',
+            custom_attributes={
+                'example attribute key': 'example attribute value'}
+        )
         self.assertEqual('test event', event.event_name)
         self.assertEqual('transaction', event.custom_event_type)
-        self.assertEqual('example attribute value', event.custom_attributes['example attribute key'])
+        self.assertEqual('example attribute value',
+                         event.custom_attributes['example attribute key'])
 
     def testAppEventAttributeValues(self):
         with self.assertRaises(ValueError):
             event = mparticle.models.app_event.AppEvent(
-                event_name='test event', 
-                custom_event_type='transaction', 
-                custom_attributes = {'example attribute key': ['something']}
-                )
+                event_name='test event',
+                custom_event_type='transaction',
+                custom_attributes={'example attribute key': ['something']}
+            )
 
         event = mparticle.models.app_event.AppEvent(
-            event_name='test event', 
-            custom_event_type='transaction', 
+            event_name='test event',
+            custom_event_type='transaction',
             custom_attributes=None
-            )
+        )
         with self.assertRaises(ValueError):
             event.custom_attributes = {'example attribute key': ['something']}
-        
 
     def testAttributionEvent(self):
-        event = mparticle.models.app_event.AppEvent.create_attribution_event(u'this is a publisher', 'this is a campaign')
+        event = mparticle.models.app_event.AppEvent.create_attribution_event(
+            u'this is a publisher', 'this is a campaign')
         self.assertEqual('attribution', event.custom_event_type)
         self.assertEqual('attribution', event.event_name)
-        self.assertEqual('this is a campaign', event.custom_attributes['campaign'])
-        self.assertEqual(u'this is a publisher', event.custom_attributes['publisher'])
+        self.assertEqual('this is a campaign',
+                         event.custom_attributes['campaign'])
+        self.assertEqual(u'this is a publisher',
+                         event.custom_attributes['publisher'])
 
     def testAttributionDeleteEvent(self):
         event = mparticle.models.app_event.AppEvent.create_attribution_delete_event()
@@ -82,6 +86,26 @@ class TestAppEvent(unittest.TestCase):
         self.assertEqual('delete', event.custom_attributes['action'])
         self.assertFalse('campaign' in event.custom_attributes)
         self.assertFalse('publisher' in event.custom_attributes)
+
+    def testAppEventCustomFlags(self):
+        custom_flags = {
+            "foo": 'bar',
+            'answer': 42,
+            'arrays': [
+                'foo', 'bar', 'baz'
+            ]
+        }
+
+        event = mparticle.models.app_event.AppEvent(
+            event_name='Test Custom flags',
+            custom_flags=custom_flags)
+
+        self.assertEqual("bar", event.custom_flags.get('foo'))
+        self.assertEqual(42, event.custom_flags.get('answer'))
+        self.assertEqual(
+            ['foo', 'bar', 'baz'],
+            event.custom_flags.get('arrays'))
+
 
 if __name__ == '__main__':
     unittest.main()

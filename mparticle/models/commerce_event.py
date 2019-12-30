@@ -30,7 +30,14 @@ import mparticle
 
 class CommerceEvent(object):
 
-    def __init__(self, product_action=None, timestamp_unixtime_ms=None, event_id=None, source_message_id=None, session_id=None, session_uuid=None, custom_attributes=None, location=None, device_current_state=None, promotion_action=None, product_impressions=None, shopping_cart=None, currency_code=None, screen_name=None, is_non_interactive=None):
+    def __init__(self, product_action=None, timestamp_unixtime_ms=None,
+                 event_id=None, source_message_id=None,
+                 session_id=None, session_uuid=None,
+                 custom_attributes=None, location=None,
+                 device_current_state=None, promotion_action=None,
+                 product_impressions=None, shopping_cart=None,
+                 currency_code=None, screen_name=None,
+                 is_non_interactive=None, custom_flags=None):
         """
         CommerceEvent - a model defined in Swagger
 
@@ -54,7 +61,8 @@ class CommerceEvent(object):
             'shopping_cart': 'ShoppingCart',
             'currency_code': 'str',
             'screen_name': 'str',
-            'is_non_interactive': 'bool'
+            'is_non_interactive': 'bool',
+            'custom_flags': 'dict(str, str)',
         }
 
         self.attribute_map = {
@@ -72,7 +80,8 @@ class CommerceEvent(object):
             'shopping_cart': 'shopping_cart',
             'currency_code': 'currency_code',
             'screen_name': 'screen_name',
-            'is_non_interactive': 'is_non_interactive'
+            'is_non_interactive': 'is_non_interactive',
+            'custom_flags': 'custom_flags',
         }
 
         self._timestamp_unixtime_ms = timestamp_unixtime_ms
@@ -90,10 +99,11 @@ class CommerceEvent(object):
         self._currency_code = currency_code
         self._screen_name = screen_name
         self._is_non_interactive = is_non_interactive
+        self._custom_flags = custom_flags
 
         if (product_action is None and
             product_impressions is None and
-            promotion_action is None):
+                promotion_action is None):
             raise ValueError(
                 "At least one of: product_action, product_impressions, or promotion_action is required."
             )
@@ -236,7 +246,8 @@ class CommerceEvent(object):
         """
 
         if not mparticle.ApiClient.validate_attribute_bag_values(custom_attributes):
-            raise ValueError("Invalid custom_attributes passed to CommerceEvent: " + str(custom_attributes))
+            raise ValueError(
+                "Invalid custom_attributes passed to CommerceEvent: " + str(custom_attributes))
 
         self._custom_attributes = custom_attributes
 
@@ -446,6 +457,29 @@ class CommerceEvent(object):
         """
 
         self._is_non_interactive = is_non_interactive
+
+    @property
+    def custom_flags(self):
+        """
+        Gets the custom_flags of this CommerceEvent.
+
+
+        :return: The custom_flags of this CommerceEvent.
+        :rtype: dict(str, str)
+        """
+        return self._custom_flags
+
+    @custom_flags.setter
+    def custom_flags(self, custom_flags):
+        """
+        Sets the custom_flags of this CommerceEvent.
+
+
+        :param custom_flags: The custom_flags of this CommerceEvent.
+        :type: dict(str, str)
+        """
+
+        self._custom_flags = custom_flags
 
     def to_dict(self):
         """

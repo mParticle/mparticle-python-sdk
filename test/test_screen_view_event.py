@@ -45,12 +45,32 @@ class TestScreenViewEvent(unittest.TestCase):
     def testScreenViewEventAttributeValues(self):
         with self.assertRaises(ValueError):
             event = mparticle.models.screen_view_event.ScreenViewEvent(
-                custom_attributes = {'example attribute key': ['something']}
-                )
+                custom_attributes={'example attribute key': ['something']}
+            )
 
         event = mparticle.models.screen_view_event.ScreenViewEvent()
         with self.assertRaises(ValueError):
             event.custom_attributes = {'example attribute key': ['something']}
+
+    def TestScreenViewEventCustomFlags(self):
+        custom_flags = {
+            "foo": 'bar',
+            'answer': 42,
+            'arrays': [
+                'foo', 'bar', 'baz'
+            ]
+        }
+
+        event = mparticle.models.screen_view_event.ScreenViewEvent(
+            custom_flags=custom_flags)
+
+        event_dict = event.to_dict()
+
+        self.assertEqual("bar", event_dict["custom_flags"]["foo"])
+        self.assertEqual(42, event_dict["custom_flags"]["answer"])
+        self.assertEqual(
+            ['foo', 'bar', 'baz'],
+            event_dict["custom_flags"]["arrays"])
 
 
 if __name__ == '__main__':
