@@ -30,7 +30,12 @@ import mparticle
 
 class ScreenViewEvent(object):
 
-    def __init__(self, timestamp_unixtime_ms=None, event_id=None, source_message_id=None, session_id=None, session_uuid=None, custom_attributes=None, location=None, device_current_state=None, screen_name=None, activity_type=None):
+    def __init__(self, timestamp_unixtime_ms=None, event_id=None,
+                 source_message_id=None, session_id=None,
+                 session_uuid=None, custom_attributes=None,
+                 location=None, device_current_state=None,
+                 screen_name=None, activity_type=None,
+                 custom_flags=None):
         """
         ScreenViewEvent - a model defined in Swagger
 
@@ -49,7 +54,8 @@ class ScreenViewEvent(object):
             'location': 'GeoLocation',
             'device_current_state': 'DeviceCurrentState',
             'screen_name': 'str',
-            'activity_type': 'str'
+            'activity_type': 'str',
+            'custom_flags': 'dict(str, str)',
         }
 
         self.attribute_map = {
@@ -62,7 +68,8 @@ class ScreenViewEvent(object):
             'location': 'location',
             'device_current_state': 'device_current_state',
             'screen_name': 'screen_name',
-            'activity_type': 'activity_type'
+            'activity_type': 'activity_type',
+            'custom_flags': 'custom_flags',
         }
 
         self._timestamp_unixtime_ms = timestamp_unixtime_ms
@@ -75,6 +82,7 @@ class ScreenViewEvent(object):
         self._device_current_state = device_current_state
         self._screen_name = screen_name
         self._activity_type = activity_type
+        self._custom_flags = custom_flags
 
     @property
     def timestamp_unixtime_ms(self):
@@ -212,7 +220,8 @@ class ScreenViewEvent(object):
         :type: dict(str, str)
         """
         if not mparticle.ApiClient.validate_attribute_bag_values(custom_attributes):
-            raise ValueError("Invalid custom_attributes passed to ScreenViewEvent: " + str(custom_attributes))
+            raise ValueError(
+                "Invalid custom_attributes passed to ScreenViewEvent: " + str(custom_attributes))
 
         self._custom_attributes = custom_attributes
 
@@ -307,6 +316,29 @@ class ScreenViewEvent(object):
         """
 
         self._activity_type = activity_type
+
+    @property
+    def custom_flags(self):
+        """
+        Gets the custom_flags of this ScreenViewEvent.
+
+
+        :return: The custom_flags of this ScreenViewEvent.
+        :rtype: dict(str, str)
+        """
+        return self._custom_flags
+
+    @custom_flags.setter
+    def custom_flags(self, custom_flags):
+        """
+        Sets the custom_flags of this ScreenViewEvent.
+
+
+        :param custom_flags: The custom_flags of this ScreenViewEvent.
+        :type: dict(str, str)
+        """
+
+        self._custom_flags = custom_flags
 
     def to_dict(self):
         """

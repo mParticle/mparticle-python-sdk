@@ -29,7 +29,10 @@ import re
 
 class EventData(object):
 
-    def __init__(self, timestamp_unixtime_ms=None, event_id=None, source_message_id=None, session_id=None, session_uuid=None, custom_attributes=None, location=None, device_current_state=None):
+    def __init__(self, timestamp_unixtime_ms=None, event_id=None,
+                 source_message_id=None, session_id=None,
+                 session_uuid=None, custom_attributes=None,
+                 location=None, device_current_state=None):
         """
         EventData - a model defined in Swagger
 
@@ -46,7 +49,7 @@ class EventData(object):
             'session_uuid': 'str',
             'custom_attributes': 'dict(str, str)',
             'location': 'GeoLocation',
-            'device_current_state': 'DeviceCurrentState'
+            'device_current_state': 'DeviceCurrentState',
         }
 
         self.attribute_map = {
@@ -57,7 +60,7 @@ class EventData(object):
             'session_uuid': 'session_uuid',
             'custom_attributes': 'custom_attributes',
             'location': 'location',
-            'device_current_state': 'device_current_state'
+            'device_current_state': 'device_current_state',
         }
 
         self._timestamp_unixtime_ms = timestamp_unixtime_ms
