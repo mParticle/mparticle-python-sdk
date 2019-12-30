@@ -30,10 +30,9 @@ import re
 class EventData(object):
 
     def __init__(self, timestamp_unixtime_ms=None, event_id=None,
-                 source_message_id=None, session_id=None, session_uuid=None,
-                 custom_attributes=None, location=None, device_current_state=None,
-                 custom_flags=None,
-                 ):
+                 source_message_id=None, session_id=None,
+                 session_uuid=None, custom_attributes=None,
+                 location=None, device_current_state=None):
         """
         EventData - a model defined in Swagger
 
@@ -51,7 +50,6 @@ class EventData(object):
             'custom_attributes': 'dict(str, str)',
             'location': 'GeoLocation',
             'device_current_state': 'DeviceCurrentState',
-            'custom_flags': 'dict(str, str)'
         }
 
         self.attribute_map = {
@@ -63,7 +61,6 @@ class EventData(object):
             'custom_attributes': 'custom_attributes',
             'location': 'location',
             'device_current_state': 'device_current_state',
-            'custom_flags': 'custom_flags'
         }
 
         self._timestamp_unixtime_ms = timestamp_unixtime_ms
@@ -74,7 +71,6 @@ class EventData(object):
         self._custom_attributes = custom_attributes
         self._location = location
         self._device_current_state = device_current_state
-        self._custom_flags = custom_flags
 
     @property
     def timestamp_unixtime_ms(self):
@@ -259,29 +255,6 @@ class EventData(object):
         """
 
         self._device_current_state = device_current_state
-
-    @property
-    def custom_flags(self):
-        """
-        Gets the custom_flags of this EventData.
-
-
-        :return: The custom_flags of this EventData.
-        :rtype: dict(str, str)
-        """
-        return self._custom_flags
-
-    @custom_flags.setter
-    def custom_flags(self, custom_flags):
-        """
-        Sets the custom_flags of this EventData.
-
-
-        :param custom_flags: The custom_flags of this EventData.
-        :type: dict(str, str)
-        """
-
-        self._custom_flags = custom_flags
 
     def to_dict(self):
         """

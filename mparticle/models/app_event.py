@@ -29,7 +29,12 @@ import mparticle
 
 class AppEvent(object):
 
-    def __init__(self, event_name=None, custom_event_type='other', timestamp_unixtime_ms=None, event_id=None, source_message_id=None, session_id=None, session_uuid=None, custom_attributes=None, location=None, device_current_state=None, media_info=None):
+    def __init__(self, event_name=None, custom_event_type='other',
+                 timestamp_unixtime_ms=None, event_id=None,
+                 source_message_id=None, session_id=None,
+                 session_uuid=None, custom_attributes=None,
+                 location=None, device_current_state=None,
+                 media_info=None, custom_flags=None):
         """
         AppEvent - a model defined in Swagger
 
@@ -49,7 +54,8 @@ class AppEvent(object):
             'device_current_state': 'DeviceCurrentState',
             'custom_event_type': 'str',
             'event_name': 'str',
-            'media_info': 'MediaInfo'
+            'media_info': 'MediaInfo',
+            'custom_flags': 'dict(str, str)'
         }
 
         self.attribute_map = {
@@ -63,7 +69,8 @@ class AppEvent(object):
             'device_current_state': 'device_current_state',
             'custom_event_type': 'custom_event_type',
             'event_name': 'event_name',
-            'media_info': 'media_info'
+            'media_info': 'media_info',
+            'custom_flags': 'custom_flags',
         }
 
         self._timestamp_unixtime_ms = timestamp_unixtime_ms
@@ -81,13 +88,14 @@ class AppEvent(object):
             )
         self._event_name = event_name
         self._media_info = media_info
+        self._custom_flags = custom_flags
 
     @classmethod
     def create_attribution_event(cls, publisher=None, campaign=None):
         return cls(
             event_name='attribution',
             custom_event_type='attribution',
-            custom_attributes = {'campaign': campaign, 'publisher': publisher}
+            custom_attributes={'campaign': campaign, 'publisher': publisher}
         )
 
     @classmethod
@@ -95,7 +103,7 @@ class AppEvent(object):
         return cls(
             event_name='attribution',
             custom_event_type='attribution',
-            custom_attributes = {'action': 'delete'}
+            custom_attributes={'action': 'delete'}
         )
 
     @property
@@ -235,7 +243,8 @@ class AppEvent(object):
         """
 
         if not mparticle.ApiClient.validate_attribute_bag_values(custom_attributes):
-            raise ValueError("Invalid custom_attributes passed to AppEvent: " + str(custom_attributes))
+            raise ValueError(
+                "Invalid custom_attributes passed to AppEvent: " + str(custom_attributes))
 
         self._custom_attributes = custom_attributes
 
@@ -305,7 +314,8 @@ class AppEvent(object):
         :param custom_event_type: The custom_event_type of this AppEvent.
         :type: str
         """
-        allowed_values = ["unknown", "navigation", "location", "search", "transaction", "user_content", "user_preference", "social", "other", "attribution"]
+        allowed_values = ["unknown", "navigation", "location", "search", "transaction",
+                          "user_content", "user_preference", "social", "other", "attribution"]
         if custom_event_type not in allowed_values:
             raise ValueError(
                 "Invalid value for `custom_event_type` ({0}), must be one of {1}"
@@ -390,6 +400,29 @@ class AppEvent(object):
         elif self.custom_attributes is not None:
             self._custom_attributes.pop("$Amount", None)
             self._custom_attributes.pop("MethodName", None)
+
+    @property
+    def custom_flags(self):
+        """
+        Gets the custom_flags of this AppEvent.
+
+
+        :return: The custom_flags of this AppEvent.
+        :rtype: dict(str, str)
+        """
+        return self._custom_flags
+
+    @custom_flags.setter
+    def custom_flags(self, custom_flags):
+        """
+        Sets the custom_flags of this AppEvent.
+
+
+        :param custom_flags: The custom_flags of this AppEvent.
+        :type: dict(str, str)
+        """
+
+        self._custom_flags = custom_flags
 
     def to_dict(self):
         """

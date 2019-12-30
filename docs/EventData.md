@@ -12,6 +12,5 @@
 | **custom_attributes**     | **dict(str, str)**                              |             | [optional] |
 | **location**              | [**GeoLocation**](GeoLocation.md)               |             | [optional] |
 | **device_current_state**  | [**DeviceCurrentState**](DeviceCurrentState.md) |             | [optional] |
-| **custom_flags**          | **dict(str, str)**                              |             | [optional] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

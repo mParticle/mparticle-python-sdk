@@ -48,17 +48,6 @@ class TestEventData(unittest.TestCase):
         """
         model = mparticle.models.event_data.EventData()
 
-    def testEventDataCustomFlags(self):
-        custom_flags = {
-            "foo": 'bar',
-            'answer': 42
-        }
-        model = mparticle.models.event_data.EventData(
-            custom_flags=custom_flags)
-
-        self.assertEqual("bar", model.custom_flags.get('foo'))
-        self.assertEqual(42, model.custom_flags.get('answer'))
-
 
 if __name__ == '__main__':
     unittest.main()
