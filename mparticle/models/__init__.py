@@ -33,6 +33,7 @@ from .application_state_transition_event import ApplicationStateTransitionEvent
 from .attribution_info import AttributionInfo
 from .batch import Batch
 from .breadcrumb_event import BreadcrumbEvent
+from .ccpa_consent_state import CCPAConsentState
 from .commerce_event import CommerceEvent
 from .consent_state import ConsentState
 from .crash_report_event import CrashReportEvent

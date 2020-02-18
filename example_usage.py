@@ -19,6 +19,13 @@ batch.device_info = device_info
 # arbitrary example allowing you to create a segment of users trial users
 batch.user_attributes = {'Account type': 'trial', 'TrialEndDate': '2016-12-01'}
 
+ccpa_consent_state = mparticle.CCPAConsentState()
+ccpa_consent_state.document = 'document_agreement.v3'
+ccpa_consent_state.consented = True
+ccpa_consent_state.timestamp_unixtime_ms = calendar.timegm(time.gmtime())
+ccpa_consent_state.location = 'mparticle.test/signup'
+ccpa_consent_state.hardware_id = 'IDFA:a5d96n32-224a-3b11-1088-a202695bc710'
+
 gdpr_consent_state = mparticle.GDPRConsentState()
 gdpr_consent_state.document = 'document_agreement.v2'
 gdpr_consent_state.consented = True
@@ -27,9 +34,9 @@ gdpr_consent_state.location = 'dtmgbank.com/signup'
 gdpr_consent_state.hardware_id = 'IDFA:a5d934n0-232f-4afc-2e9a-3832d95zc702'
 
 consent_state = mparticle.ConsentState()
-# Make sure this purpose matches your consent purpose in
-# Setup > GDPR Settings
-# https://docs.mparticle.com/guides/consent-management/#enabling-gdpr-consent-management
+# Workspace Settings > Workspace > Regulations
+# https://docs.mparticle.com/guides/consent-management/
+consent_state.ccpa = {'data_sale_opt_out': ccpa_consent_state}
 consent_state.gdpr = {'document_agreement': gdpr_consent_state}
 
 batch.consent_state = consent_state
