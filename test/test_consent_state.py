@@ -50,6 +50,7 @@ class TestConsentState(unittest.TestCase):
         model = mparticle.models.consent_state.ConsentState()
 
         self.assertEqual(model.gdpr, {})
+        self.assertEqual(model.ccpa, {})
 
 
 if __name__ == '__main__':

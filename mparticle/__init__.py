@@ -33,6 +33,7 @@ from .models.application_state_transition_event import ApplicationStateTransitio
 from .models.attribution_info import AttributionInfo
 from .models.batch import Batch
 from .models.breadcrumb_event import BreadcrumbEvent
+from .models.ccpa_consent_state import CCPAConsentState
 from .models.commerce_event import CommerceEvent
 from .models.consent_state import ConsentState
 from .models.crash_report_event import CrashReportEvent

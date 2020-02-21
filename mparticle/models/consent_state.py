@@ -38,14 +38,39 @@ class ConsentState(object):
                                   and the value is json key in definition.
         """
         self.swagger_types = {
+            'ccpa': 'dict',
             'gdpr': 'dict'
         }
 
         self.attribute_map = {
+            'ccpa': 'ccpa',
             'gdpr': 'gdpr'
         }
 
+        self.ccpa = dict()
         self.gdpr = dict()
+
+    @property
+    def ccpa(self):
+        """
+        Gets the ccpa of this CCPAConsentState
+
+        :return The ccpa of this CCPAConsentState
+        :rtype dict
+        """
+        return self._ccpa
+
+    @ccpa.setter
+    def ccpa(self, ccpa):
+        """
+        Sets the ccpa of this Consent State.
+
+
+        :param ccpa: The ccpa of this Consent State.
+        :type: dict
+        """
+
+        self._ccpa = ccpa
 
     @property
     def gdpr(self):
