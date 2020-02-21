@@ -2,6 +2,7 @@
 
 ## Properties
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-
+| Name      | Type               | Description | Notes |
+| --------- | ------------------ | ----------- | ----- |
+| **gdpr ** | **dict(str, str)** |             |       |
+| **ccpa ** | **dict(str, str)** |             |       |
