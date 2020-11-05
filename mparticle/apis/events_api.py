@@ -107,7 +107,7 @@ class EventsApi(object):
         if ('body' not in params) or (params['body'] is None):
             raise ValueError("Missing the required parameter `body` when calling `bulk_upload_events`")
 
-        resource_path = '/bulkevents'.replace('{format}', 'json')
+        resource_path = '/bulkevents/historical'.replace('{format}', 'json')
         path_params = {}
 
         query_params = {}
