@@ -29,7 +29,7 @@ import re
 
 class UserIdentities(object):
 
-    def __init__(self, other=None, customerid=None, facebook=None, twitter=None, google=None, microsoft=None, yahoo=None, email=None, alias=None, facebook_custom_audience_id=None, other2=None, other3=None, other4=None):
+    def __init__(self, other=None, customerid=None, facebook=None, twitter=None, google=None, microsoft=None, yahoo=None, email=None, alias=None, facebook_custom_audience_id=None, other_id_2=None, other_id_3=None, other_id_4=None, other_id_5=None, other_id_6=None, other_id_7=None, other_id_8=None, other_id_9=None, other_id_10=None, mobile_number=None, phone_number_2=None, phone_number_3=None):
         """
         UserIdentities - a model defined in Swagger
 
@@ -49,9 +49,18 @@ class UserIdentities(object):
             'email': 'str',
             'alias': 'str',
             'facebook_custom_audience_id': 'str',
-            'other2': 'str',
-            'other3': 'str',
-            'other4': 'str'
+            'other_id_2': 'str',
+            'other_id_3': 'str',
+            'other_id_4': 'str',
+            'other_id_5': 'str',
+            'other_id_6': 'str',
+            'other_id_7': 'str',
+            'other_id_8': 'str',
+            'other_id_9': 'str',
+            'other_id_10': 'str',
+            'mobile_number': 'str',
+            'phone_number_2': 'str',
+            'phone_number_3': 'str'
         }
 
         self.attribute_map = {
@@ -65,9 +74,18 @@ class UserIdentities(object):
             'email': 'email',
             'alias': 'alias',
             'facebook_custom_audience_id': 'facebook_custom_audience_id',
-            'other2': 'other2',
-            'other3': 'other3',
-            'other4': 'other4'
+            'other_id_2': 'other_id_2',
+            'other_id_3': 'other_id_3',
+            'other_id_4': 'other_id_4',           
+            'other_id_5': 'other_id_5',
+            'other_id_6': 'other_id_6',
+            'other_id_7': 'other_id_7',        
+            'other_id_8': 'other_id_8',
+            'other_id_9': 'other_id_9',
+            'other_id_10': 'other_id_10',           
+            'mobile_number': 'mobile_number',
+            'phone_number_2': 'phone_number_2',
+            'phone_number_3': 'phone_number_3'
         }
 
         self._other = other
@@ -80,9 +98,18 @@ class UserIdentities(object):
         self._email = email
         self._alias = alias
         self._facebook_custom_audience_id = facebook_custom_audience_id
-        self._other2 = other2
-        self._other3 = other3
-        self._other4 = other4
+        self._other_id_2 = other_id_2
+        self._other_id_3 = other_id_3
+        self._other_id_4 = other_id_4
+        self._other_id_5 = other_id_5
+        self._other_id_6 = other_id_6
+        self._other_id_7 = other_id_7
+        self._other_id_8 = other_id_8
+        self._other_id_9 = other_id_9
+        self._other_id_10 = other_id_10
+        self._mobile_number = mobile_number
+        self._phone_number_2 = phone_number_2
+        self._phone_number_3 = phone_number_3
 
     @property
     def other(self):
@@ -315,74 +342,112 @@ class UserIdentities(object):
         self._facebook_custom_audience_id = facebook_custom_audience_id
 
     @property
-    def other2(self):
-        """
-        Gets the other2 of this UserIdentities.
+    def other_id_2(self):
+        return self._other_id_2
 
-
-        :return: The other2 of this UserIdentities.
-        :rtype: str
-        """
-        return self._other2
-
-    @other2.setter
-    def other2(self, other2):
-        """
-        Sets the other2 of this UserIdentities.
-
-
-        :param other2: The other2 of this UserIdentities.
-        :type: str
-        """
-
-        self._other2 = other2
-
-    @property
-    def other3(self):
-        """
-        Gets the other3 of this UserIdentities.
-
-
-        :return: The other3 of this UserIdentities.
-        :rtype: str
-        """
-        return self._other3
-
-    @other3.setter
-    def other3(self, other3):
-        """
-        Sets the other3 of this UserIdentities.
-
-
-        :param other3: The other3 of this UserIdentities.
-        :type: str
-        """
-
-        self._other3 = other3
+    @other_id_2.setter
+    def other_id_2(self, other_id_2):
+        self._other_id_2 = other_id_2
 
 
     @property
-    def other4(self):
-        """
-        Gets the other4 of this UserIdentities.
+    def other_id_3(self):
+        return self._other_id_3
+
+    @other_id_3.setter
+    def other_id_3(self, other_id_3):
+        self._other_id_3 = other_id_3
 
 
-        :return: The other4 of this UserIdentities.
-        :rtype: str
-        """
-        return self._other4
+    @property
+    def other_id_4(self):
+        return self._other_id_4
 
-    @other4.setter
-    def other4(self, other4):
-        """
-        Sets the other4 of this UserIdentities.
+    @other_id_4.setter
+    def other_id_4(self, other_id_4):
+        self._other_id_4 = other_id_4
 
 
-        :param other4: The other4 of this UserIdentities.
-        :type: str
-        """
+    @property
+    def other_id_5(self):
+        return self._other_id_5
 
-        self._other4 = other4
+    @other_id_5.setter
+    def other_id_5(self, other_id_5):
+        self._other_id_5 = other_id_5
+
+
+    @property
+    def other_id_6(self):
+        return self._other_id_6
+
+    @other_id_6.setter
+    def other_id_6(self, other_id_6):
+        self._other_id_6 = other_id_6
+
+
+    @property
+    def other_id_7(self):
+        return self._other_id_7
+
+    @other_id_7.setter
+    def other_id_7(self, other_id_7):
+        self._other_id_7 = other_id_7
+
+
+    @property
+    def other_id_8(self):
+        return self._other_id_8
+
+    @other_id_8.setter
+    def other_id_8(self, other_id_8):
+        self._other_id_8 = other_id_8
+
+
+    @property
+    def other_id_9(self):
+        return self._other_id_9
+
+    @other_id_9.setter
+    def other_id_9(self, other_id_9):
+        self._other_id_9 = other_id_9
+
+
+    @property
+    def other_id_10(self):
+        return self._other_id_10
+
+    @other_id_10.setter
+    def other_id_10(self, other_id_10):
+        self._other_id_10 = other_id_10
+
+
+    @property
+    def mobile_number(self):
+        return self._mobile_number
+
+    @mobile_number.setter
+    def mobile_number(self, mobile_number):
+        self._mobile_number = mobile_number
+
+
+    @property
+    def phone_number_2(self):
+        return self._phone_number_2
+
+    @phone_number_2.setter
+    def phone_number_2(self, phone_number_2):
+        self._phone_number_2 = phone_number_2
+
+
+    @property
+    def phone_number_3(self):
+        return self._phone_number_3
+
+    @phone_number_3.setter
+    def phone_number_3(self, phone_number_3):
+        self._phone_number_3 = phone_number_3
+
 
     def to_dict(self):
         """

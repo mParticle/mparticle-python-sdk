@@ -45,35 +45,67 @@ class TestUserIdentities(unittest.TestCase):
     def testUserIdentities(self):
         model = mparticle.models.user_identities.UserIdentities()
 
-    def testOtherUserIdentitiesConstructor(self):
-        model = mparticle.models.user_identities.UserIdentities(other2="foo-other2", other3="foo-other3", other4="foo-other4")
-        self.assertEqual("foo-other2", model.other2)
-        self.assertEqual("foo-other3", model.other3)
-        self.assertEqual("foo-other4", model.other4)
-
-
     def testOtherUserIdentitiesProperties(self):
         model = mparticle.models.user_identities.UserIdentities()
-        model.other2 = "foo-other2"
-        model.other3 = "foo-other3"
-        model.other4 = "foo-other4"
-        self.assertEqual("foo-other2", model.other2)
-        self.assertEqual("foo-other3", model.other3)
-        self.assertEqual("foo-other4", model.other4)
+        model.other_id_2 = "foo-other2"
+        model.other_id_3 = "foo-other3"
+        model.other_id_4 = "foo-other4"
+        model.other_id_5 = "foo-other5"
+        model.other_id_6 = "foo-other6"
+        model.other_id_7 = "foo-other7"
+        model.other_id_8 = "foo-other8"
+        model.other_id_9 = "foo-other9"
+        model.other_id_10 = "foo-other10"
+        model.mobile_number = "foo-mobile_number"
+        model.phone_number_2 = "foo-phone_number_2"
+        model.phone_number_3 = "foo-phone_number_3"
+
+        self.assertEqual("foo-other2", model.other_id_2)
+        self.assertEqual("foo-other3", model.other_id_3)
+        self.assertEqual("foo-other4", model.other_id_4)
+        self.assertEqual("foo-other5", model.other_id_5)
+        self.assertEqual("foo-other6", model.other_id_6)
+        self.assertEqual("foo-other7", model.other_id_7)
+        self.assertEqual("foo-other8", model.other_id_8)
+        self.assertEqual("foo-other9", model.other_id_9)
+        self.assertEqual("foo-other10", model.other_id_10)
+        self.assertEqual("foo-mobile_number", model.mobile_number)
+        self.assertEqual("foo-phone_number_2", model.phone_number_2)
+        self.assertEqual("foo-phone_number_3", model.phone_number_3)
 
     def testOtherUserIdentitiesSerialization(self):
         model = mparticle.models.user_identities.UserIdentities()
         identity_dict = model.to_dict()
         for key in identity_dict:
             self.assertEqual(None, identity_dict[key])
+ 
+        model.other_id_2 = "foo-other2"
+        model.other_id_3 = "foo-other3"
+        model.other_id_4 = "foo-other4"
+        model.other_id_5 = "foo-other5"
+        model.other_id_6 = "foo-other6"
+        model.other_id_7 = "foo-other7"
+        model.other_id_8 = "foo-other8"
+        model.other_id_9 = "foo-other9"
+        model.other_id_10 = "foo-other10"
+        model.mobile_number = "foo-mobile_number"
+        model.phone_number_2 = "foo-phone_number_2"
+        model.phone_number_3 = "foo-phone_number_3"
 
-        model.other2 = "foo-other2"
-        model.other3 = "foo-other3"
-        model.other4 = "foo-other4"
         identity_dict = model.to_dict()
-        self.assertEqual("foo-other2", identity_dict["other2"])
-        self.assertEqual("foo-other3", identity_dict["other3"])
-        self.assertEqual("foo-other4", identity_dict["other4"])
+
+        self.assertEqual("foo-other2", identity_dict["other_id_2"])
+        self.assertEqual("foo-other3", identity_dict["other_id_3"])
+        self.assertEqual("foo-other4", identity_dict["other_id_4"])
+        self.assertEqual("foo-other5", identity_dict["other_id_5"])
+        self.assertEqual("foo-other6", identity_dict["other_id_6"])
+        self.assertEqual("foo-other7", identity_dict["other_id_7"])
+        self.assertEqual("foo-other8", identity_dict["other_id_8"])
+        self.assertEqual("foo-other9", identity_dict["other_id_9"])
+        self.assertEqual("foo-other10", identity_dict["other_id_10"])
+        self.assertEqual("foo-mobile_number", identity_dict["mobile_number"])
+        self.assertEqual("foo-phone_number_2", identity_dict["phone_number_2"])
+        self.assertEqual("foo-phone_number_3", identity_dict["phone_number_3"])
 
 
 if __name__ == '__main__':
