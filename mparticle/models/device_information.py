@@ -30,7 +30,7 @@ from uuid import UUID
 
 class DeviceInformation(object):
 
-    def __init__(self, brand=None, product=None, device=None, android_uuid=None, device_manufacturer=None, platform=None, os_version=None, device_model=None, screen_height=None, screen_width=None, screen_dpi=None, device_country=None, locale_language=None, locale_country=None, network_country=None, network_carrier=None, network_code=None, network_mobile_country_code=None, timezone_offset=None, build_identifier=None, http_header_user_agent=None, ios_advertising_id=None, push_token=None, cpu_architecture=None, is_tablet=None, push_notification_sound_enabled=None, push_notification_vibrate_enabled=None, radio_access_technology=None, supports_telephony=None, has_nfc=None, bluetooth_enabled=None, bluetooth_version=None, ios_idfv=None, android_advertising_id=None):
+    def __init__(self, brand=None, product=None, device=None, android_uuid=None, device_manufacturer=None, platform=None, os_version=None, device_model=None, screen_height=None, screen_width=None, screen_dpi=None, device_country=None, locale_language=None, locale_country=None, network_country=None, network_carrier=None, network_code=None, network_mobile_country_code=None, timezone_offset=None, build_identifier=None, http_header_user_agent=None, ios_advertising_id=None, push_token=None, cpu_architecture=None, is_tablet=None, push_notification_sound_enabled=None, push_notification_vibrate_enabled=None, radio_access_technology=None, supports_telephony=None, has_nfc=None, bluetooth_enabled=None, bluetooth_version=None, att_timestamp_unixtime_ms=None, att_authorization_status=None, ios_idfv=None, android_advertising_id=None):
         """
         DeviceInformation - a model defined in Swagger
 
@@ -72,6 +72,8 @@ class DeviceInformation(object):
             'has_nfc': 'bool',
             'bluetooth_enabled': 'bool',
             'bluetooth_version': 'str',
+            'att_timestamp_unixtime_ms': 'int',
+            'att_authorization_status': 'str',
             'ios_idfv': 'str',
             'android_advertising_id': 'str'
         }
@@ -109,6 +111,8 @@ class DeviceInformation(object):
             'has_nfc': 'has_nfc',
             'bluetooth_enabled': 'bluetooth_enabled',
             'bluetooth_version': 'bluetooth_version',
+            'att_timestamp_unixtime_ms': 'att_timestamp_unixtime_ms',
+            'att_authorization_status': 'att_authorization_status',
             'ios_idfv': 'ios_idfv',
             'android_advertising_id': 'android_advertising_id'
         }
@@ -145,6 +149,8 @@ class DeviceInformation(object):
         self._has_nfc = has_nfc
         self._bluetooth_enabled = bluetooth_enabled
         self._bluetooth_version = bluetooth_version
+        self.att_timestamp_unixtime_ms = att_timestamp_unixtime_ms
+        self.att_authorization_status = att_authorization_status
         self.ios_idfv = ios_idfv
         self.android_advertising_id = android_advertising_id
 
@@ -902,6 +908,59 @@ class DeviceInformation(object):
         """
 
         self._bluetooth_version = bluetooth_version
+
+    @property
+    def att_timestamp_unixtime_ms(self):
+        """
+        Gets the att_timestamp_unixtime_ms of this DeviceInformation.
+
+
+        :return: The att_timestamp_unixtime_ms of this DeviceInformation.
+        :rtype: int
+        """
+        return self._att_timestamp_unixtime_ms
+
+    @att_timestamp_unixtime_ms.setter
+    def att_timestamp_unixtime_ms(self, att_timestamp_unixtime_ms):
+        """
+        Sets the att_timestamp_unixtime_ms of this DeviceInformation.
+
+
+        :param att_timestamp_unixtime_ms: The att_timestamp_unixtime_ms of this DeviceInformation.
+        :type: int
+        """
+
+        self._att_timestamp_unixtime_ms = att_timestamp_unixtime_ms
+
+    @property
+    def att_authorization_status(self):
+        """
+        Gets the att_authorization_status of this DeviceInformation.
+
+
+        :return: The att_authorization_status of this DeviceInformation.
+        :rtype: str
+        """
+        return self._att_authorization_status
+
+    @att_authorization_status.setter
+    def att_authorization_status(self, att_authorization_status):
+        """
+        Sets the att_authorization_status of this DeviceInformation.
+
+
+        :param att_authorization_status: The att_authorization_status of this DeviceInformation.
+        :type: str
+        """
+        if att_authorization_status is not None:
+            allowed_values = ["authorized", "denied", "not_determined", "restricted"]
+            if att_authorization_status not in allowed_values:
+                raise ValueError(
+                    "Invalid value for `att_authorization_status` ({0}), must be one of {1}"
+                    .format(att_authorization_status, allowed_values)
+                )
+
+        self._att_authorization_status = att_authorization_status
 
     @property
     def ios_idfv(self):
