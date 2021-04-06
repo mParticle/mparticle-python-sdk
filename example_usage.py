@@ -14,6 +14,8 @@ device_info = mparticle.DeviceInformation()
 # set any IDs that you have for this user
 device_info.ios_advertising_id = '07d2ebaa-e956-407e-a1e6-f05f871bf4e2'
 device_info.android_advertising_id = 'a26f9736-c262-47ea-988b-0b0504cee874'
+device_info.att_timestamp_unixtime_ms = 1552596256103
+device_info.att_authorization_status = 'authorized'
 batch.device_info = device_info
 
 # arbitrary example allowing you to create a segment of users trial users
@@ -111,4 +113,4 @@ try:
     # you can also send multiple batches at a time to decrease the amount of network calls
     # api_instance.bulk_upload_events([batch, batch])
 except mparticle.rest.ApiException as e:
-    print "Exception while calling mParticle: %s\n" % e
+    print("Exception while calling mParticle: %s\n" % e)

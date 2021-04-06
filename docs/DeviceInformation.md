@@ -35,9 +35,10 @@ Name | Type | Description | Notes
 **has_nfc** | **bool** |  | [optional] 
 **bluetooth_enabled** | **bool** |  | [optional] 
 **bluetooth_version** | **str** |  | [optional] 
+**att_timestamp_unixtime_ms** | **int** |  | [optional]
+**att_authorization_status** | **str** |  | [optional]
 **ios_idfv** | **str** |  | [optional] 
 **android_advertising_id** | **str** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
 
