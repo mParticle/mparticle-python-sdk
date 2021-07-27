@@ -297,7 +297,7 @@ class DeviceInformation(object):
         :param platform: The platform of this DeviceInformation.
         :type: str
         """
-        allowed_values = ["Unknown", "iOS", "Android", "tvOS"]
+        allowed_values = ["Unknown", "iOS", "Android", "web", "tvOS", "roku", "out_of_band", "alexa", "smart_tv", "fire_tv", "xbox"]
         if platform not in allowed_values:
             raise ValueError(
                 "Invalid value for `platform` ({0}), must be one of {1}"
