@@ -27,6 +27,8 @@ from __future__ import absolute_import
 import sys
 import os
 import re
+import calendar
+import time
 
 # python 2 and python 3 compatibility library
 from six import iteritems
@@ -34,6 +36,8 @@ from six import iteritems
 from ..configuration import Configuration
 from ..api_client import ApiClient
 
+retryAfterTimestamp = calendar.timegm(time.gmtime())
+latestResponse = None
 
 class EventsApi(object):
 
@@ -62,7 +66,6 @@ class EventsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
         if kwargs.get('callback'):
             return self.bulk_upload_events_with_http_info(body, **kwargs)
         else:
@@ -134,7 +137,10 @@ class EventsApi(object):
         # Authentication setting
         auth_settings = ['basic']
 
-        return self.api_client.call_api(resource_path, 'POST',
+        if retryAfterTimestamp > calendar.timegm(time.gmtime()):
+            return latestResponse
+
+        latestResponse = self.api_client.call_api(resource_path, 'POST',
                                             path_params,
                                             query_params,
                                             header_params,
@@ -145,6 +151,11 @@ class EventsApi(object):
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'),
                                             _return_http_data_only=params.get('_return_http_data_only'))
+        
+        retry_after = latestResponse.getheader("Retry-After")
+        if retry_after:
+            retryAfterTimestamp = calendar.timegm(time.gmtime()) + retry_after
+        return latestResponse
 
     def upload_events(self, body, **kwargs):
         """
@@ -166,7 +177,6 @@ class EventsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
         if kwargs.get('callback'):
             return self.upload_events_with_http_info(body, **kwargs)
         else:
@@ -238,7 +248,10 @@ class EventsApi(object):
         # Authentication setting
         auth_settings = ['basic']
 
-        return self.api_client.call_api(resource_path, 'POST',
+        if retryAfterTimestamp > calendar.timegm(time.gmtime()):
+            return latestResponse
+
+        latestResponse = self.api_client.call_api(resource_path, 'POST',
                                             path_params,
                                             query_params,
                                             header_params,
@@ -249,3 +262,8 @@ class EventsApi(object):
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'),
                                             _return_http_data_only=params.get('_return_http_data_only'))
+        
+        retry_after = latestResponse.getheader("Retry-After")
+        if retry_after:
+            retryAfterTimestamp = calendar.timegm(time.gmtime()) + retry_after
+        return latestResponse
