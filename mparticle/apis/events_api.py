@@ -36,10 +36,9 @@ from six import iteritems
 from ..configuration import Configuration
 from ..api_client import ApiClient
 
-retryAfterTimestamp = calendar.timegm(time.gmtime())
-latestResponse = None
-
 class EventsApi(object):
+    retryAfterTimestamp = calendar.timegm(time.gmtime())
+    latestResponse = None
 
     def __init__(self, config=Configuration()):
         if not config.api_client:
