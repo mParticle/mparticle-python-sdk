@@ -136,6 +136,8 @@ class EventsApi(object):
         # Authentication setting
         auth_settings = ['basic']
 
+        global retryAfterTimestamp
+        global latestResponse
         if retryAfterTimestamp > calendar.timegm(time.gmtime()):
             return latestResponse
 
@@ -247,6 +249,8 @@ class EventsApi(object):
         # Authentication setting
         auth_settings = ['basic']
 
+        global retryAfterTimestamp
+        global latestResponse
         if retryAfterTimestamp > calendar.timegm(time.gmtime()):
             return latestResponse
 
