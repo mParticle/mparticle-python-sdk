@@ -6,7 +6,7 @@ This is the mParticle Python client SDK - use it to send your data to the [mPart
 
 ### Requirements.
 
-Python 2.7 and later.
+Python 3.5 and later.
 
 ### Installation
 
