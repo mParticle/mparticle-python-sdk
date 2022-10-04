@@ -31,6 +31,8 @@ import ssl
 import certifi
 import logging
 import re
+import calendar
+import time
 
 # python 2 and python 3 compatibility library
 from six import iteritems
@@ -58,21 +60,30 @@ class RESTResponse(io.IOBase):
         self.status = resp.status
         self.reason = resp.reason
         self.data = resp.data
+        self.retry_after_header_value = None
 
     def getheaders(self):
         """
         Returns a dictionary of the response headers.
         """
-        return self.urllib3_response.getheaders()
+        headers = self.urllib3_response.getheaders()
+        if 'Retry-After' in headers and self.retry_after_header_value is not None:
+            headers['Retry-After'] = self.retry_after_header_value
+        return headers
 
     def getheader(self, name, default=None):
         """
         Returns a given response header.
         """
+        if name is 'Retry-After' and self.retry_after_header_value is not None:
+            return self.retry_after_header_value
         return self.urllib3_response.getheader(name, default)
 
 
 class RESTClientObject(object):
+
+    retry_after_timestamp = calendar.timegm(time.gmtime())
+    latest_response = None
 
     def __init__(self, pools_size=4, config=None):
         # urllib3.PoolManager will pass all kw parameters to connectionpool
@@ -136,6 +147,11 @@ class RESTClientObject(object):
         if 'Content-Type' not in headers:
             headers['Content-Type'] = 'application/json'
 
+        time_diff = RESTClientObject.retry_after_timestamp - calendar.timegm(time.gmtime())
+        if RESTClientObject.latest_response is not None and time_diff > 0:
+            RESTClientObject.latest_response.retry_after_header_value = str(time_diff)
+            raise ApiException(http_resp=RESTClientObject.latest_response)
+
         try:
             # For `POST`, `PUT`, `PATCH`, `OPTIONS`, `DELETE`
             if method in ['POST', 'PUT', 'PATCH', 'OPTIONS', 'DELETE']:
@@ -180,7 +196,17 @@ class RESTClientObject(object):
         # log response body
         logger.debug("response body: %s" % r.data)
 
-        if r.status not in range(200, 206):
+        if r.status == 429:
+            retry_after = r.getheader('Retry-After')
+            if retry_after:
+                try:
+                    RESTClientObject.retry_after_timestamp = calendar.timegm(time.gmtime()) + int(retry_after)
+                    RESTClientObject.latest_response = r
+                except:
+                    raise ApiException(http_resp=r)
+                
+            raise ApiException(http_resp=r)
+        elif r.status not in range(200, 206):
             raise ApiException(http_resp=r)
 
         return r
