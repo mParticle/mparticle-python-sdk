@@ -30,7 +30,7 @@ from uuid import UUID
 
 class DeviceInformation(object):
 
-    def __init__(self, brand=None, product=None, device=None, android_uuid=None, device_manufacturer=None, platform=None, os_version=None, device_model=None, screen_height=None, screen_width=None, screen_dpi=None, device_country=None, locale_language=None, locale_country=None, network_country=None, network_carrier=None, network_code=None, network_mobile_country_code=None, timezone_offset=None, build_identifier=None, http_header_user_agent=None, ios_advertising_id=None, push_token=None, cpu_architecture=None, is_tablet=None, push_notification_sound_enabled=None, push_notification_vibrate_enabled=None, radio_access_technology=None, supports_telephony=None, has_nfc=None, bluetooth_enabled=None, bluetooth_version=None, att_timestamp_unixtime_ms=None, att_authorization_status=None, ios_idfv=None, android_advertising_id=None):
+    def __init__(self, brand=None, product=None, device=None, android_uuid=None, device_manufacturer=None, platform=None, os_version=None, device_model=None, screen_height=None, screen_width=None, screen_dpi=None, device_country=None, locale_language=None, locale_country=None, network_country=None, network_carrier=None, network_code=None, network_mobile_country_code=None, timezone_offset=None, build_identifier=None, http_header_user_agent=None, ios_advertising_id=None, push_token=None, cpu_architecture=None, is_tablet=None, push_notification_sound_enabled=None, push_notification_vibrate_enabled=None, radio_access_technology=None, supports_telephony=None, has_nfc=None, bluetooth_enabled=None, bluetooth_version=None, att_timestamp_unixtime_ms=None, att_authorization_status=None, ios_idfv=None, android_advertising_id=None, amp_id=None, roku_advertising_id=None, roku_publisher_id=None, microsoft_advertising_id=None, microsoft_publisher_id=None, fire_advertising_id=None):
         """
         DeviceInformation - a model defined in Swagger
 
@@ -72,6 +72,12 @@ class DeviceInformation(object):
             'has_nfc': 'bool',
             'bluetooth_enabled': 'bool',
             'bluetooth_version': 'str',
+            'amp_id': 'str',
+            'roku_advertising_id': 'str',
+            'roku_publisher_id': 'str',
+            'microsoft_advertising_id': 'str',
+            'microsoft_publisher_id': 'str',
+            'fire_advertising_id': 'str',
             'att_timestamp_unixtime_ms': 'int',
             'att_authorization_status': 'str',
             'ios_idfv': 'str',
@@ -111,6 +117,12 @@ class DeviceInformation(object):
             'has_nfc': 'has_nfc',
             'bluetooth_enabled': 'bluetooth_enabled',
             'bluetooth_version': 'bluetooth_version',
+            'amp_id': 'amp_id',
+            'roku_advertising_id': 'roku_advertising_id',
+            'roku_publisher_id': 'roku_publisher_id',
+            'microsoft_advertising_id': 'microsoft_advertising_id',
+            'microsoft_publisher_id': 'microsoft_publisher_id',
+            'fire_advertising_id': 'fire_advertising_id',
             'att_timestamp_unixtime_ms': 'att_timestamp_unixtime_ms',
             'att_authorization_status': 'att_authorization_status',
             'ios_idfv': 'ios_idfv',
@@ -149,6 +161,12 @@ class DeviceInformation(object):
         self._has_nfc = has_nfc
         self._bluetooth_enabled = bluetooth_enabled
         self._bluetooth_version = bluetooth_version
+        self.amp_id = amp_id
+        self.roku_advertising_id = roku_advertising_id
+        self.roku_publisher_id = roku_publisher_id
+        self.microsoft_advertising_id = microsoft_advertising_id
+        self.microsoft_publisher_id = microsoft_publisher_id
+        self.fire_advertising_id = fire_advertising_id
         self.att_timestamp_unixtime_ms = att_timestamp_unixtime_ms
         self.att_authorization_status = att_authorization_status
         self.ios_idfv = ios_idfv
@@ -908,6 +926,66 @@ class DeviceInformation(object):
         """
 
         self._bluetooth_version = bluetooth_version
+
+    @property
+    def amp_id(self):
+        return self._amp_id
+
+    @amp_id.setter
+    def amp_id(self, amp_id):
+        self._amp_id = amp_id
+
+    @property
+    def roku_advertising_id(self):
+        return self._roku_advertising_id
+
+    @roku_advertising_id.setter
+    def roku_advertising_id(self, roku_advertising_id):
+
+        error = self.validateUUID(roku_advertising_id)
+        if (error is not None):
+            raise ValueError("Error: \"{0}\", while setting roku_advertising_id with value: {1}"
+                .format(error, roku_advertising_id))
+
+        self._roku_advertising_id = roku_advertising_id
+    
+    @property
+    def roku_publisher_id(self):
+        return self._roku_publisher_id
+
+    @roku_publisher_id.setter
+    def roku_publisher_id(self, roku_publisher_id):
+        self._roku_publisher_id = roku_publisher_id
+
+    @property
+    def microsoft_advertising_id(self):
+        return self._microsoft_advertising_id
+
+    @microsoft_advertising_id.setter
+    def microsoft_advertising_id(self, microsoft_advertising_id):
+        self._microsoft_advertising_id = microsoft_advertising_id
+
+    @property
+    def microsoft_publisher_id(self):
+        return self._microsoft_publisher_id
+
+    @microsoft_publisher_id.setter
+    def microsoft_publisher_id(self, microsoft_publisher_id):
+        self._microsoft_publisher_id = microsoft_publisher_id
+
+    @property
+    def fire_advertising_id(self):
+        return self._fire_advertising_id
+
+    @fire_advertising_id.setter
+    def fire_advertising_id(self, fire_advertising_id):
+
+        error = self.validateUUID(fire_advertising_id)
+        if (error is not None):
+            raise ValueError("Error: \"{0}\", while setting fire_advertising_id with value: {1}"
+                .format(error, fire_advertising_id))
+
+        self._fire_advertising_id = fire_advertising_id
 
     @property
     def att_timestamp_unixtime_ms(self):
