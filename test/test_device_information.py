@@ -79,6 +79,25 @@ class TestDeviceInformation(unittest.TestCase):
             model = mparticle.models.device_information.DeviceInformation()
             model.android_advertising_id = "anything"
 
+    def testInvalidFireID(self):
+
+        with self.assertRaises(ValueError):
+            model = mparticle.models.device_information.DeviceInformation(fire_advertising_id="anything")
+
+        with self.assertRaises(ValueError):
+            model = mparticle.models.device_information.DeviceInformation()
+            model.fire_advertising_id = "anything"
+
+    def testRokuAdID(self):
+
+        with self.assertRaises(ValueError):
+            model = mparticle.models.device_information.DeviceInformation(roku_advertising_id="anything")
+
+        with self.assertRaises(ValueError):
+            model = mparticle.models.device_information.DeviceInformation()
+            model.roku_advertising_id = "anything"
+
+
 
 if __name__ == '__main__':
     unittest.main()
