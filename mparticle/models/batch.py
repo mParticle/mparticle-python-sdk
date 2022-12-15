@@ -25,7 +25,6 @@
 from pprint import pformat
 from six import iteritems
 import re
-
 from .api_response import ApiResponse
 from .api_response_errors import ApiResponseErrors
 from .app_event import AppEvent
