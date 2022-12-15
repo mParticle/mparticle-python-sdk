@@ -50,6 +50,7 @@ class TestUserAttributeChangeEvent(unittest.TestCase):
                                                                                       deleted=False)
         batch = mparticle.Batch()
         batch.events = [model]
+        self.assertEqual(batch.events[0].event_type, 'user_attribute_change')
         self.assertEqual(batch.events[0].data.user_attribute_name, 'test_attribute')
         self.assertEqual(batch.events[0].data.new, 'new_value')
         self.assertEqual(batch.events[0].data.old, None)
