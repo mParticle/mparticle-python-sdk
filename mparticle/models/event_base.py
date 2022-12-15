@@ -94,7 +94,7 @@ class EventBase(object):
         :param event_type: The event_type of this EventBase.
         :type: str
         """
-        allowed_values = ["unknown", "session_start", "session_end", "screen_view", "custom_event", "crash_report", "opt_out", "first_run", "pre_attribution", "push_registration", "application_state_transition", "push_message", "network_performance", "breadcrumb", "profile", "push_reaction", "commerce_event"]
+        allowed_values = ["unknown", "session_start", "session_end", "screen_view", "custom_event", "crash_report", "opt_out", "first_run", "pre_attribution", "push_registration", "application_state_transition", "push_message", "network_performance", "breadcrumb", "profile", "push_reaction", "commerce_event", "user_attribute_change"]
         if event_type not in allowed_values:
             raise ValueError(
                 "Invalid value for `event_type` ({0}), must be one of {1}"
