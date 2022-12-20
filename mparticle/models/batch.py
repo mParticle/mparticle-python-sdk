@@ -58,6 +58,7 @@ from .session_start_event import SessionStartEvent
 from .shopping_cart import ShoppingCart
 from .source_information import SourceInformation
 from .user_identities import UserIdentities
+from .user_attribute_change_event import UserAttributeChangeEvent
 
 
 class Batch(object):
@@ -134,7 +135,8 @@ class Batch(object):
                                type(CommerceEvent(ProductAction('purchase'))): 'commerce_event',
                                type(PushMessageEvent()): 'push_message',
                                type(NetworkPerformanceEvent()): 'network_performance',
-                               type(CrashReportEvent()): 'commerce_event'}
+                               type(CrashReportEvent()): 'commerce_event',
+                               type(UserAttributeChangeEvent()): 'user_attribute_change'}
         self._context = context
 
     @property

@@ -63,3 +63,4 @@ from .source_information import SourceInformation
 from .user_identities import UserIdentities
 from .batch_context import BatchContext
 from .data_plan_context import DataPlanContext
+from .user_attribute_change_event import UserAttributeChangeEvent
