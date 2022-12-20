@@ -4,7 +4,7 @@ import sys
 from setuptools import setup, find_packages
 
 NAME = "mparticle"
-VERSION = "0.14.0"
+VERSION = "0.15.0"
 
 
 # To install the library, run the following
