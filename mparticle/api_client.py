@@ -35,6 +35,8 @@ import threading
 
 from datetime import datetime
 from datetime import date
+from datetime import time
+from decimal import Decimal
 
 # python 2 and python 3 compatibility library
 from six import iteritems
@@ -203,8 +205,10 @@ class ApiClient(object):
 
         If obj is None, return None.
         If obj is str, int, long, float, bool, return directly.
-        If obj is datetime.datetime, datetime.date
+        If obj is datetime.datetime, datetime.date, datetime.time
             convert to string in iso8601 format.
+        if obj is decimal.Decimal
+            convert to string
         If obj is list, sanitize each element in the list.
         If obj is dict, return the dict.
         If obj is swagger model, return the properties dict.
@@ -220,8 +224,10 @@ class ApiClient(object):
         elif isinstance(obj, list):
             return [ApiClient.sanitize_for_serialization(sub_obj)
                     for sub_obj in obj]
-        elif isinstance(obj, (datetime, date)):
+        elif isinstance(obj, (datetime, date, time)):
             return obj.isoformat()
+        elif isinstance(obj, Decimal):
+            return str(obj)
         else:
             if isinstance(obj, dict):
                 obj_dict = obj

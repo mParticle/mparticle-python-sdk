@@ -24,6 +24,9 @@
 
 from __future__ import absolute_import
 
+import datetime
+import decimal
+import json
 import os
 import sys
 import unittest
@@ -46,6 +49,52 @@ class TestApiClient(unittest.TestCase):
         self.assertFalse(ApiClient.validate_attribute_bag_values({"foo":"bar", "foo-2":5, "foo-3":[3.14], "foo-4":None}))
         pass
 
+    def test_sanitize_for_serialization(self):
+        obj = {
+            "a_string": "foo",
+            "a_int": 123,
+            "a_float": 1.23,
+            "a_bool": True,
+            "a_null": None,
+            "a_date": datetime.date(2023, 5, 3),
+            "a_datetime": datetime.datetime(2023, 5, 3, 10, 58, 16, 123),
+            "a_time": datetime.time(10, 58, 16, 123),
+            "a_decimal": decimal.Decimal('5.2E+7'),
+            "a_dict": {
+                "a_string": "foo",
+                "a_int": 123,
+            },
+            "a_array": [
+                "hello",
+                "world",
+            ],
+        }
+
+        sanitized_obj = ApiClient.sanitize_for_serialization(obj)
+        assert sanitized_obj == {
+            "a_string": "foo",
+            "a_int": 123,
+            "a_float": 1.23,
+            "a_bool": True,
+            "a_null": None,
+            "a_date": '2023-05-03',
+            "a_datetime": '2023-05-03T10:58:16.000123',
+            "a_time": '10:58:16.000123',
+            "a_decimal": '5.2E+7',
+            "a_dict": {
+                "a_string": "foo",
+                "a_int": 123,
+            },
+            "a_array": [
+                "hello",
+                "world",
+            ],
+        }
+
+        serialized_obj = json.dumps(sanitized_obj)
+        assert serialized_obj == '{"a_string": "foo", "a_int": 123, "a_float": 1.23, "a_bool": true, "a_null": null, ' \
+                                 '"a_date": "2023-05-03", "a_datetime": "2023-05-03T10:58:16.000123", "a_time": "10:58:16.000123", ' \
+                                 '"a_decimal": "5.2E+7", "a_dict": {"a_string": "foo", "a_int": 123}, "a_array": ["hello", "world"]}'
 
 
 if __name__ == '__main__':
