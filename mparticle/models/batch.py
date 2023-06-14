@@ -63,7 +63,7 @@ from .user_attribute_change_event import UserAttributeChangeEvent
 
 class Batch(object):
 
-    def __init__(self, events=None, source_request_id=None, environment=None, ip=None, schema_version=None, device_info=None, application_info=None, user_attributes=None, deleted_user_attributes=None, user_identities=None, api_key=None, mpid=None, mp_deviceid=None, consent_state=None, context=None):
+    def __init__(self, events=None, source_request_id=None, environment=None, ip=None, schema_version=None, device_info=None, application_info=None, user_attributes=None, deleted_user_attributes=None, user_identities=None, api_key=None, mpid=None, mp_deviceid=None, consent_state=None, context=None, integration_attributes=None):
         """
         Batch - a model defined in Swagger
 
@@ -84,6 +84,7 @@ class Batch(object):
             'deleted_user_attributes': 'list[str]',
             'user_identities': 'UserIdentities',
             'consent_state': 'ConsentState',
+            'integration_attributes': 'dict(str, dict(str, str))',
             'api_key': 'str',
             'mpid': 'int',
             'mp_deviceid': 'str',
@@ -102,6 +103,7 @@ class Batch(object):
             'deleted_user_attributes': 'deleted_user_attributes',
             'user_identities': 'user_identities',
             'consent_state': 'consent_state',
+            'integration_attributes': 'integration_attributes',
             'api_key': 'api_key',
             'mpid': 'mpid',
             'mp_deviceid': 'mp_deviceid',
@@ -118,6 +120,7 @@ class Batch(object):
         self._application_info = application_info
         self._user_attributes = user_attributes
         self._consent_state = consent_state
+        self._integration_attributes = integration_attributes
         self._deleted_user_attributes = deleted_user_attributes
         self._user_identities = user_identities
         self._mpid = mpid
@@ -486,6 +489,27 @@ class Batch(object):
 
         self._consent_state = consent_state
 
+    @property
+    def integration_attributes(self):
+        """Gets the integration_attributes of this Batch.  # noqa: E501
+
+
+        :return: The integration_attributes of this Batch.  # noqa: E501
+        :rtype: dict(str, dict(str, str))
+        """
+        return self._integration_attributes
+
+    @integration_attributes.setter
+    def integration_attributes(self, integration_attributes):
+        """Sets the integration_attributes of this Batch.
+
+
+        :param integration_attributes: The integration_attributes of this Batch.  # noqa: E501
+        :type: dict(str, dict(str, str))
+        """
+
+        self._integration_attributes = integration_attributes
+        
     @property
     def context(self):
         """
