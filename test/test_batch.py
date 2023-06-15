@@ -91,5 +91,19 @@ class TestBatch(unittest.TestCase):
         self.assertEqual("foo", batch_dict["context"]["data_plan"]["plan_id"])
         self.assertEqual(5, batch_dict["context"]["data_plan"]["plan_version"])
 
+    def testBatchIntegrationAttributes(self):
+        """
+        Test Batch Integration Attributes
+        """
+        model = mparticle.models.batch.Batch()
+
+        batch_dict = model.to_dict()
+        for key in batch_dict:
+            self.assertEqual(None, batch_dict[key])
+
+        model.integration_attributes = { "123": { "someIntegrationAttribute": "value" } }
+        batch_dict = model.to_dict()
+        self.assertEqual({ "123": { "someIntegrationAttribute":"value" } }, batch_dict["integration_attributes"])
+
 if __name__ == '__main__':
     unittest.main()

@@ -43,6 +43,12 @@ consent_state.gdpr = {'document_agreement': gdpr_consent_state}
 
 batch.consent_state = consent_state
 
+batch.integration_attributes = {
+  "123": {
+    "someIntegrationAttribute":"value"
+  }
+}
+
 app_event = mparticle.AppEvent('Example', 'navigation')
 app_event.timestamp_unixtime_ms = 1552596256103
 app_event.custom_flags = {
