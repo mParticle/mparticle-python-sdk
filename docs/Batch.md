@@ -16,6 +16,7 @@
 | **deleted_user_attributes** | **list[str]**                                           |             | [optional] |
 | **user_identities**         | [**UserIdentities**](UserIdentities.md)                 |             | [optional] |
 | **consentState**            | [**ConsentState**](ConsentState.md)                     |             | [optional] |
+| **integration_attributes**  | **dict(str, dict(str, str))**                           |             | [optional] |
 | **mpid**                    | **int**                                                 |             | [optional] |
 | **mp_deviceid**             | **str**                                                 |             | [optional] |
 
