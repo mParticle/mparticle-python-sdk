@@ -45,7 +45,7 @@ batch.consent_state = consent_state
 
 batch.integration_attributes = {
   "123": {
-    "someIntegrationAttribute":"value"
+    "someIntegrationAttribute": "value"
   }
 }
 
